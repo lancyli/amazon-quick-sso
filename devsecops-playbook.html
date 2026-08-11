@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps Agent + Security Agent + Kiro-CLI 通用 Playbook</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg-2:#111834;
+    --surface:#161f42;
+    --surface-2:#1d284f;
+    --border:#2a3766;
+    --text:#e8ecf7;
+    --muted:#9aa6c7;
+    --brand:#5b8cff;
+    --brand-2:#7c5cff;
+    --kiro:#38bdf8;
+    --devops:#34d399;
+    --sec:#fb7185;
+    --accent:#fbbf24;
+    --radius:16px;
+    --shadow:0 20px 45px -20px rgba(0,0,0,.6);
+    --mono:'SFMono-Regular',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{
+    font-family:var(--sans);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(91,140,255,.15), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(11,16,32,.72);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 18px var(--brand)}
+  .nav-links{display:flex;gap:6px;flex-wrap:wrap}
+  .nav-links a{
+    font-size:13.5px;color:var(--muted);padding:8px 12px;border-radius:10px;transition:.2s;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--surface)}
+  .menu-btn{display:none;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+
+  /* HERO */
+  .hero{padding:90px 0 60px;text-align:center;position:relative}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--muted);
+    border:1px solid var(--border);background:var(--surface);
+    padding:6px 14px;border-radius:999px;margin-bottom:24px;
+  }
+  .badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--devops);box-shadow:0 0 10px var(--devops)}
+  .hero h1{
+    font-size:clamp(30px,5vw,52px);line-height:1.15;font-weight:800;letter-spacing:-.5px;
+    background:linear-gradient(180deg,#fff, #b8c4ea);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{max-width:720px;margin:22px auto 0;color:var(--muted);font-size:18px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+  .btn{padding:12px 22px;border-radius:12px;font-weight:600;font-size:15px;transition:.2s;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 12px 30px -12px var(--brand)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{background:var(--surface-2)}
+
+  /* SECTION */
+  section{padding:56px 0;scroll-margin-top:70px}
+  .sec-head{margin-bottom:34px}
+  .sec-kicker{color:var(--brand);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;margin-top:8px;letter-spacing:-.3px}
+  .sec-head p{color:var(--muted);margin-top:10px;max-width:760px}
+
+  /* VALUE CARDS */
+  .grid{display:grid;gap:18px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  .card{
+    background:linear-gradient(180deg,var(--surface),var(--bg-2));
+    border:1px solid var(--border);border-radius:var(--radius);padding:22px;
+    box-shadow:var(--shadow);transition:.25s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:#3a4c82}
+  .card .val-metric{font-size:13px;color:var(--muted)}
+  .card .val-title{font-weight:700;font-size:16px;margin:6px 0 4px}
+  .card .val-num{font-size:22px;font-weight:800;color:var(--accent)}
+
+  /* AGENT CARDS */
+  .agent-card{position:relative;overflow:hidden}
+  .agent-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px}
+  .agent-card.kiro::before{background:var(--kiro)}
+  .agent-card.devops::before{background:var(--devops)}
+  .agent-card.sec::before{background:var(--sec)}
+  .agent-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .agent-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px}
+  .kiro .agent-ico{background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.4)}
+  .devops .agent-ico{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.4)}
+  .sec .agent-ico{background:rgba(251,113,133,.15);border:1px solid rgba(251,113,133,.4)}
+  .agent-name{font-weight:800;font-size:18px}
+  .agent-role{font-size:12.5px;color:var(--muted)}
+  .agent-oneliner{font-size:14px;color:var(--text);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-bottom:14px;border:1px solid var(--border)}
+  .agent-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .agent-list li{font-size:14px;color:var(--muted);padding-left:22px;position:relative}
+  .agent-list li::before{content:"▹";position:absolute;left:0;color:var(--brand)}
+  .chip{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;margin-top:14px;font-weight:600}
+  .kiro .chip{background:rgba(56,189,248,.14);color:var(--kiro)}
+  .devops .chip{background:rgba(52,211,153,.14);color:var(--devops)}
+  .sec .chip{background:rgba(251,113,133,.14);color:var(--sec)}
+
+  /* TIMELINE */
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+  .tl-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+  .tl-phase{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+  .tl-owner{font-weight:800;font-size:17px;margin-bottom:12px}
+  .tl-col.kiro .tl-owner{color:var(--kiro)}
+  .tl-col.devops .tl-owner{color:var(--devops)}
+  .tl-col.sec .tl-owner{color:var(--sec)}
+
+  /* TABLE */
+  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+  th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{background:var(--surface-2);color:var(--text);font-weight:700;font-size:13px;position:sticky;top:0}
+  tbody tr:hover{background:rgba(91,140,255,.06)}
+  td:first-child{font-weight:600;color:var(--text)}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:6px}
+  .tag.k{background:rgba(56,189,248,.16);color:var(--kiro)}
+  .tag.d{background:rgba(52,211,153,.16);color:var(--devops)}
+  .tag.s{background:rgba(251,113,133,.16);color:var(--sec)}
+
+  /* CODE / ASCII */
+  pre.diagram{
+    background:#0a0f22;border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;
+    color:#b9c4e6;box-shadow:var(--shadow);
+  }
+
+  /* MODES */
+  .mode{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+  .mode-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .mode-num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff}
+  .mode-title{font-weight:800;font-size:17px}
+  .mode-fit{font-size:13px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px dashed var(--border)}
+  .mode-fit b{color:var(--accent)}
+
+  /* PHASES */
+  .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .phase{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative}
+  .phase .pn{font-size:12px;font-weight:800;color:var(--brand)}
+  .phase h4{margin:6px 0 8px;font-size:15px}
+  .phase p{font-size:13px;color:var(--muted)}
+
+  /* Q&A */
+  .qa{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+  .qa summary{padding:16px 18px;cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary .q-ico{color:var(--brand);transition:.2s}
+  .qa[open] summary .q-ico{transform:rotate(45deg)}
+  .qa .qa-body{padding:0 18px 18px;color:var(--muted);font-size:14px}
+
+  /* PRICING */
+  .price-card{text-align:center}
+  .price-card h3{font-size:18px;margin-bottom:6px}
+  .price-card .price{font-size:26px;font-weight:800;color:var(--accent);margin:10px 0}
+  .price-card p{font-size:13px;color:var(--muted)}
+
+  footer{border-top:1px solid var(--border);padding:34px 0;text-align:center;color:var(--muted);font-size:13px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.on{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .grid-4{grid-template-columns:repeat(2,1fr)}
+    .grid-3,.timeline,.phases{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg-2);padding:12px 24px;border-bottom:1px solid var(--border)}
+    .menu-btn{display:block}
+  }
+  @media(max-width:600px){
+    .grid-2,.grid-4{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo"><span class="dot"></span> DevSecOps Playbook</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#overview">概述</a>
+      <a href="#roles">核心定位</a>
+      <a href="#timeline">生命周期</a>
+      <a href="#mcp">MCP 集成</a>
+      <a href="#modes">组合模式</a>
+      <a href="#guide">选型指南</a>
+      <a href="#scenarios">典型场景</a>
+      <a href="#deploy">上手路径</a>
+      <a href="#pricing">定价</a>
+    </nav>
+    <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero wrap">
+  <div class="badge"><span class="pulse"></span> 预防 · 发现 · 修复 全生命周期</div>
+  <h1>DevOps Agent + Security Agent<br>+ Kiro-CLI 通用 Playbook</h1>
+  <p class="lead">一套「预防—发现—修复」全生命周期 DevSecOps 组合方案。三个 AI Agent 各司其职，通过 MCP 集成形成闭环，可直接用于 Demo、Workshop 与方案设计。</p>
+  <div class="hero-cta">
+    <a href="#roles" class="btn btn-primary">了解三者分工</a>
+    <a href="#modes" class="btn btn-ghost">查看组合模式</a>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">01 · Overview</div>
+    <h2>Playbook 概述</h2>
+    <p>三个 Agent 通过 MCP 集成形成闭环，覆盖问题生命周期的每个阶段，兼顾运维效率、主动预防、安全左移与资源洞察。</p>
+  </div>
+  <div class="grid grid-4">
+    <div class="card">
+      <div class="val-metric">运维效率</div>
+      <div class="val-title">MTTR 大幅降低</div>
+      <div class="val-num">2h → 28min</div>
+      <div class="val-metric">WGU · -77%</div>
+    </div>
+    <div class="card">
+      <div class="val-metric">主动预防</div>
+      <div class="val-title">历史模式分析</div>
+      <div class="val-num">提前发现隐患</div>
+      <div class="val-metric">DevOps Agent 预防性建议</div>
+    </div>
+    <div class="card">
+      <div class="val-metric">安全左移</div>
+      <div class="val-title">设计阶段发现问题</div>
+      <div class="val-num">Shift-Left</div>
+      <div class="val-metric">Security Agent 渗透测试</div>
+    </div>
+    <div class="card">
+      <div class="val-metric">资源洞察</div>
+      <div class="val-title">自然语言查询</div>
+      <div class="val-num">SRE 自动化</div>
+      <div class="val-metric">DevOps Agent 巡检</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">02 · Positioning</div>
+    <h2>🎯 核心定位：三者的分工与选择</h2>
+    <p>不是三选一，而是在问题生命周期的不同阶段各司其职。</p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card agent-card kiro">
+      <div class="agent-head">
+        <div class="agent-ico">🛠️</div>
+        <div>
+          <div class="agent-name">Kiro-CLI</div>
+          <div class="agent-role">开发者 AI 运维搭档：能查能改</div>
+        </div>
+      </div>
+      <div class="agent-oneliner">工作电脑 / 堡垒机 · 结合 AWS CLI 运维</div>
+      <ul class="agent-list">
+        <li>结合 AWS CLI 运维（kubectl / aws cli / terraform）</li>
+        <li>IaC 开发 / 修复</li>
+        <li>资源分析与问题排查</li>
+        <li>人工确认后执行修复</li>
+      </ul>
+      <span class="chip">继承用户 IAM 角色权限（可读可写）</span>
+    </div>
+
+    <div class="card agent-card devops">
+      <div class="agent-head">
+        <div class="agent-ico">📡</div>
+        <div>
+          <div class="agent-name">DevOps Agent</div>
+          <div class="agent-role">AI 值班员：主动发现，只看不改</div>
+        </div>
+      </div>
+      <div class="agent-oneliner">云端 · 接入监控生态，7×24 无人值守</div>
+      <ul class="agent-list">
+        <li>事件集成主动响应</li>
+        <li>按需分析（只读）</li>
+        <li>预防性建议</li>
+        <li>SRE 自动化巡检</li>
+      </ul>
+      <span class="chip">只读权限（不做任何变更）</span>
+    </div>
+
+    <div class="card agent-card sec">
+      <div class="agent-head">
+        <div class="agent-ico">🛡️</div>
+        <div>
+          <div class="agent-name">Security Agent</div>
+          <div class="agent-role">安全专家：主动找漏洞</div>
+        </div>
+      </div>
+      <div class="agent-oneliner">云端 · 事前发现，在问题发生前阻断</div>
+      <ul class="agent-list">
+        <li>渗透测试</li>
+        <li>设计审计</li>
+        <li>威胁建模</li>
+        <li>代码审查</li>
+      </ul>
+      <span class="chip">扫描 / 测试权限（不改业务逻辑）</span>
+    </div>
+  </div>
+
+  <div style="height:26px"></div>
+  <div class="sec-head" style="margin-bottom:18px"><h2 style="font-size:22px">定位精确对比</h2></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th><span class="tag k">Kiro-CLI</span></th><th><span class="tag d">DevOps Agent</span></th><th><span class="tag s">Security Agent</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>一句话</td><td>开发者 AI 运维搭档：能查能改</td><td>AI 值班员：主动发现，只看不改</td><td>安全专家：主动找漏洞</td></tr>
+        <tr><td>核心能力</td><td>IaC 开发 + 资源分析 + 问题排查 + 修复执行</td><td>主动事件响应 + 按需分析</td><td>渗透测试 + 设计审计 + 威胁建模</td></tr>
+        <tr><td>运行环境</td><td>工作电脑 / 堡垒机</td><td>云端（接入监控生态）</td><td>云端</td></tr>
+        <tr><td>权限模型</td><td>继承用户 IAM 角色权限（可读可写，受角色约束）</td><td>只读权限（不做任何变更）</td><td>扫描 / 测试权限（不改业务逻辑）</td></tr>
+        <tr><td>触发方式</td><td>人主动发起</td><td>事件集成自动触发 / 人按需查询</td><td>PR 触发 / 按需发起</td></tr>
+        <tr><td>与 AWS CLI</td><td>直接结合 AWS CLI 运维</td><td>通过 API 只读获取数据</td><td>通过 API 发起安全测试</td></tr>
+        <tr><td>关键差异</td><td>权限跟着人走，人确认后执行</td><td>与监控事件集成，7×24 无人值守</td><td>专注安全维度</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="height:30px"></div>
+  <div class="sec-head" style="margin-bottom:18px"><h2 style="font-size:22px">三者如何选择（决策树）</h2></div>
+  <pre class="diagram">面对哪类需求？
+│
+├─ "我们有运维问题需要排查和修复"
+│   └─ ▶ Kiro-CLI（工作电脑/堡垒机 + AWS CLI，按用户 IAM 角色权限操作）
+│
+├─ "我们想 7×24 自动发现问题"
+│   └─ ▶ DevOps Agent（只读权限，与事件集成主动响应）
+│
+├─ "我们想发现安全漏洞和合规风险"
+│   └─ ▶ Security Agent（渗透测试 + 设计审计）
+│
+├─ "我们想自动发现 + 手动修复"
+│   └─ ▶ DevOps Agent（只读发现）+ Kiro-CLI（用户权限修复）通过 MCP 集成
+│
+└─ "我们想全链路安全"
+    └─ ▶ Security Agent（事前渗透测试）+ DevOps Agent（事中只读监控）+ Kiro-CLI（修复）</pre>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">03 · Lifecycle</div>
+    <h2>问题生命周期分工</h2>
+    <p>以「EKS Node 上 Pod 无法挂载 EFS」为例，看三者如何在事前 / 事中 / 事后接力。</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-col sec">
+      <div class="tl-phase">事前 · 预防</div>
+      <div class="tl-owner">Security Agent</div>
+      <ul class="agent-list">
+        <li>渗透测试</li>
+        <li>设计审计</li>
+        <li>威胁建模</li>
+        <li>代码审查</li>
+      </ul>
+      <span class="chip" style="background:rgba(251,113,133,.14);color:var(--sec)">扫描 / 测试权限</span>
+    </div>
+    <div class="tl-col devops">
+      <div class="tl-phase">事中 · 发现 + 分析</div>
+      <div class="tl-owner">DevOps Agent</div>
+      <ul class="agent-list">
+        <li>事件集成主动响应</li>
+        <li>按需分析（只读）</li>
+        <li>预防性建议</li>
+        <li>SRE 自动化巡检</li>
+      </ul>
+      <span class="chip" style="background:rgba(52,211,153,.14);color:var(--devops)">只读权限</span>
+    </div>
+    <div class="tl-col kiro">
+      <div class="tl-phase">事中 / 事后 · 修复</div>
+      <div class="tl-owner">Kiro-CLI</div>
+      <ul class="agent-list">
+        <li>结合 AWS CLI 运维</li>
+        <li>IaC 开发 / 修复</li>
+        <li>资源分析排查</li>
+        <li>人工确认执行</li>
+      </ul>
+      <span class="chip" style="background:rgba(56,189,248,.14);color:var(--kiro)">用户 IAM 角色权限</span>
+    </div>
+  </div>
+
+  <div style="height:28px"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>阶段</th><th>谁</th><th>做什么</th><th>权限</th></tr></thead>
+      <tbody>
+        <tr><td>事前 · 预防</td><td><span class="tag s">Security Agent</span></td><td>渗透测试：扫描 EFS 端口暴露、SG 配置合理性</td><td>安全扫描权限</td></tr>
+        <tr><td>事中 · 发现</td><td><span class="tag d">DevOps Agent</span></td><td>事件集成主动响应：CloudWatch 告警 → 自动调查 → 给出根因结论</td><td>只读权限</td></tr>
+        <tr><td>事中 · 修复</td><td><span class="tag k">Kiro-CLI</span></td><td>堡垒机用 AWS CLI 验证 → 生成 Terraform 修复代码 → 人工确认执行</td><td>用户 IAM 角色权限</td></tr>
+        <tr><td>事后 · 加固</td><td><span class="tag s">Security Agent</span></td><td>将此模式加入渗透测试用例</td><td>安全扫描权限</td></tr>
+        <tr><td>事后 · 学习</td><td><span class="tag d">DevOps Agent</span></td><td>学习修复模式 → 下次 SG 变更时主动预警</td><td>只读权限</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- MCP -->
+<section id="mcp" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">04 · Integration</div>
+    <h2>🔌 MCP 集成架构</h2>
+    <p>Kiro 通过 MCP 协议与 DevOps Agent 集成，三者形成闭环。</p>
+  </div>
+  <pre class="diagram">┌────────────────────────────────────────────────────────────────────┐
+│                                                                    │
+│  ┌────────────────┐       MCP        ┌───────────────────┐        │
+│  │   Kiro-CLI     │◀═══════════════▶│  DevOps Agent     │        │
+│  │                │                  │                   │        │
+│  │  工作电脑/堡垒机 │  ← 拉取分析结论  │  事件集成主动响应   │        │
+│  │  用户IAM角色    │  ← 资源状态数据  │  只读权限          │        │
+│  │  AWS CLI 运维   │  → 触发按需分析  │  7×24 无人值守     │        │
+│  │  人工确认执行   │                  │                   │        │
+│  └────────────────┘                  └───────────────────┘        │
+│           │                                    │                   │
+│           ▼                                    ▼                   │
+│  ┌─────────────────────────────────────────────────────────┐      │
+│  │                   Security Agent                         │      │
+│  │  • 渗透测试：主动发现安全漏洞和暴露面                      │      │
+│  │  • 对 Kiro 生成的 IaC 代码做安全审查                      │      │
+│  │  • 基于 DevOps Agent 发现的问题模式 → 更新渗透测试用例    │      │
+│  └─────────────────────────────────────────────────────────┘      │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘</pre>
+</section>
+
+<!-- MODES -->
+<section id="modes" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">05 · Patterns</div>
+    <h2>🤝 结合使用：三个模式</h2>
+    <p>根据场景选择最合适的 Agent 组合方式。</p>
+  </div>
+
+  <div class="mode">
+    <div class="mode-head">
+      <div class="mode-num">1</div>
+      <div class="mode-title">完整闭环（最佳实践 ⭐）</div>
+    </div>
+    <pre class="diagram">Security Agent 渗透测试 → 发现 SG 配置风险（事前）
+                                              │
+     问题真的发生了 ────────────────────────────┘
+     │
+     ▼ DevOps Agent 事件集成主动响应（只读权限）
+     ├─ CloudWatch 告警自动触发
+     ├─ 关联多信号分析
+     └─ 推送根因结论（MCP + Slack）
+           │
+           ▼ Kiro-CLI（堡垒机，用户 IAM 角色权限）
+           ├─ 通过 MCP 拉取 Agent 结论
+           ├─ aws cli / kubectl 验证
+           ├─ 生成 Terraform 修复代码
+           └─ 人工确认执行 ✅
+                │
+                ▼ Security Agent 审查修复代码 + 更新渗透用例
+                ▼ DevOps Agent 学习模式 → 下次主动预警</pre>
+  </div>
+
+  <div class="mode">
+    <div class="mode-head">
+      <div class="mode-num">2</div>
+      <div class="mode-title">Kiro-CLI 为主（快速排障场景）</div>
+    </div>
+    <pre class="diagram">开发者在堡垒机发现问题
+     │
+     ▼ Kiro-CLI + AWS CLI（用户 IAM 角色权限）
+     ├─ kubectl describe pod / aws efs describe-mount-targets
+     ├─ 分析日志 → 定位根因
+     ├─ 生成修复命令 / IaC 代码
+     └─ 人工确认执行 ✅</pre>
+    <div class="mode-fit"><b>适用：</b> 快速排障、已知有问题、零配置启动</div>
+  </div>
+
+  <div class="mode">
+    <div class="mode-head">
+      <div class="mode-num">3</div>
+      <div class="mode-title">DevOps Agent 为主 + Kiro 修复</div>
+    </div>
+    <pre class="diagram">DevOps Agent 7×24 事件集成主动响应（只读）
+     │ 告警触发 → 自动调查
+     ▼ 推送根因结论
+                    │
+                    ▼ Kiro-CLI 修复（用户 IAM 权限）</pre>
+    <div class="mode-fit"><b>适用：</b> 生产环境持续监控、夜间无人值守</div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">06 · Selection</div>
+    <h2>💡 选型指南</h2>
+    <p>常见问题解答 + 场景快速推荐。</p>
+  </div>
+
+  <div class="sec-head" style="margin-bottom:16px"><h2 style="font-size:20px">常见问题解答</h2></div>
+  <details class="qa">
+    <summary>"Kiro 和 DevOps Agent 都能分析日志，区别是什么？" <span class="q-ico">+</span></summary>
+    <div class="qa-body">权限和触发方式不同：Kiro 继承你的 IAM 角色权限，能查能改，但需要人主动发起；DevOps Agent 只有只读权限，但能与事件集成自动触发，7×24 主动响应。一个是"带工具的工程师"，一个是"只读监控大屏"。</div>
+  </details>
+  <details class="qa">
+    <summary>"为什么 DevOps Agent 不能执行修复？" <span class="q-ico">+</span></summary>
+    <div class="qa-body">设计哲学是只读——生产环境变更必须经过人确认。Agent 负责发现和分析，Kiro 负责生成修复代码，人确认后执行。权限分离是最安全的模式。</div>
+  </details>
+  <details class="qa">
+    <summary>"Security Agent 和另外两个什么关系？" <span class="q-ico">+</span></summary>
+    <div class="qa-body">Security Agent 做渗透测试——主动找漏洞和暴露面，在问题发生之前就阻断。另外两个是问题发生后的发现和修复。三者是事前-事中-事后的关系。</div>
+  </details>
+  <details class="qa">
+    <summary>"我们怕 AI 乱改生产环境" <span class="q-ico">+</span></summary>
+    <div class="qa-body">三层安全保障：DevOps Agent 只读不改；Kiro-CLI 继承用户 IAM 权限且需人工确认；Security Agent 审查修复代码。</div>
+  </details>
+
+  <div style="height:26px"></div>
+  <div class="sec-head" style="margin-bottom:16px"><h2 style="font-size:20px">场景 → 快速推荐</h2></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>需求场景…</th><th>推荐</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td>"开发者在堡垒机排障"</td><td><span class="tag k">Kiro-CLI</span></td><td>直接跑堡垒机 + AWS CLI，用户权限</td></tr>
+        <tr><td>"凌晨出问题没人处理"</td><td><span class="tag d">DevOps Agent</span></td><td>事件集成主动响应，只读权限</td></tr>
+        <tr><td>"想做安全漏洞扫描"</td><td><span class="tag s">Security Agent</span></td><td>渗透测试核心能力</td></tr>
+        <tr><td>"自动发现 + 手动修复"</td><td><span class="tag d">DevOps</span> + <span class="tag k">Kiro (MCP)</span></td><td>只读发现 + 用户权限修复</td></tr>
+        <tr><td>"怕 AI 乱改环境"</td><td>三者结合</td><td>只读 + 用户权限 + 安全审查 = 三层保障</td></tr>
+        <tr><td>"出海多区域合规"</td><td><span class="tag s">Security Agent 为主</span></td><td>渗透测试 + 合规映射</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section id="scenarios" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">07 · Scenarios</div>
+    <h2>典型场景 Playbook</h2>
+  </div>
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="agent-name" style="font-size:16px;margin-bottom:12px">场景 A · EKS Pod 无法挂载 EFS</div>
+      <pre class="diagram" style="font-size:11.5px">Step 1: Pod 启动失败，挂载 EFS 超时
+Step 2: Kiro-CLI（堡垒机）+ AWS CLI
+        （用户 IAM 权限）→ 拉取日志
+Step 3: 分析日志 → 定位根因
+        （SG/子网/CSI driver）
+Step 4: 生成修复代码
+        （Terraform / AWS CLI）
+Step 5: 人工确认执行修复 ✅</pre>
+    </div>
+    <div class="card">
+      <div class="agent-name" style="font-size:16px;margin-bottom:12px">场景 B · 出海安全合规</div>
+      <pre class="diagram" style="font-size:11.5px">Step 1: Security Agent → 渗透测试
+        + 合规审计
+Step 2: Kiro-CLI → 生成合规修复代码
+Step 3: DevOps Agent → 部署后
+        持续只读监控</pre>
+    </div>
+    <div class="card">
+      <div class="agent-name" style="font-size:16px;margin-bottom:12px">场景 C · 7×24 EKS 主动运维</div>
+      <pre class="diagram" style="font-size:11.5px">Step 1: DevOps Agent 事件集成（只读）
+        → 主动响应告警
+Step 2: 自动调查 → 推送根因结论
+Step 3: Kiro-CLI → 生成修复代码
+        （用户 IAM 权限）
+Step 4: Security Agent → 审查修复安全性</pre>
+    </div>
+  </div>
+</section>
+
+<!-- DEPLOY -->
+<section id="deploy" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">08 · Onboarding</div>
+    <h2>部署与上手路径</h2>
+    <p>推荐渐进式上手，逐步走向全链路 DevSecOps。</p>
+  </div>
+  <div class="phases">
+    <div class="phase">
+      <div class="pn">PHASE 1</div>
+      <h4>Kiro-CLI</h4>
+      <p>零门槛，堡垒机 / PC 装好即用。解决眼前问题。</p>
+    </div>
+    <div class="phase">
+      <div class="pn">PHASE 2</div>
+      <h4>+ DevOps Agent</h4>
+      <p>接入 CloudWatch 事件集成，实现 7×24 自动发现。</p>
+    </div>
+    <div class="phase">
+      <div class="pn">PHASE 3</div>
+      <h4>+ MCP 集成</h4>
+      <p>Agent 结论直达 Kiro，形成发现—修复闭环。</p>
+    </div>
+    <div class="phase">
+      <div class="pn">PHASE 4</div>
+      <h4>+ Security Agent</h4>
+      <p>渗透测试，安全左移，走向全链路 DevSecOps。</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-kicker">09 · Pricing</div>
+    <h2>💲 定价速查</h2>
+  </div>
+  <div class="grid grid-3">
+    <div class="card price-card">
+      <h3>DevOps Agent</h3>
+      <div class="price">按秒计费</div>
+      <p>无预付，可用 Support 额度<br>Preview 免费</p>
+    </div>
+    <div class="card price-card">
+      <h3>Security Agent</h3>
+      <div class="price">$50 / task-hour</div>
+      <p>2 个月免费试用<br>Preview 免费</p>
+    </div>
+    <div class="card price-card">
+      <h3>Kiro-CLI</h3>
+      <div class="price">免费 / Pro</div>
+      <p>具体参考最新定价</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    DevOps Agent + Security Agent + Kiro-CLI 通用 Playbook · 预防 · 发现 · 修复 全生命周期 DevSecOps
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // close mobile menu on link click
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
+    document.getElementById('navLinks').classList.remove('open');
+  }));
+</script>
+</body>
+</html>
