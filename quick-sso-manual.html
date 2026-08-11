@@ -36,7 +36,6 @@
   a{color:var(--brand)}
   .layout{display:flex;max-width:1280px;margin:0 auto}
 
-  /* NAV */
   header.nav{
     position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
     background:rgba(11,16,32,.78);border-bottom:1px solid var(--border);
@@ -45,22 +44,17 @@
   .logo{display:flex;align-items:center;gap:10px;font-weight:700}
   .logo .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 16px var(--brand)}
   .badge-security{font-size:11.5px;color:var(--ok);background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);padding:4px 10px;border-radius:999px}
-  .menu-btn{display:none;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
 
-  /* SIDEBAR */
   aside.side{
-    width:260px;flex:0 0 260px;padding:28px 20px;position:sticky;top:60px;
+    width:270px;flex:0 0 270px;padding:28px 18px;position:sticky;top:60px;
     height:calc(100vh - 60px);overflow-y:auto;border-right:1px solid var(--border);
   }
   .side-doc{margin-bottom:26px}
   .side-doc-title{font-size:11.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:700;margin-bottom:10px;padding-left:4px}
-  .side-doc a{
-    display:block;font-size:13.8px;color:var(--muted);padding:7px 10px;border-radius:8px;text-decoration:none;transition:.15s;
-  }
+  .side-doc a{display:block;font-size:13.5px;color:var(--muted);padding:6px 10px;border-radius:8px;text-decoration:none;transition:.15s}
   .side-doc a:hover{color:var(--text);background:var(--surface)}
-  .side-doc a.lvl2{padding-left:22px;font-size:13px}
+  .side-doc a.lvl2{padding-left:20px;font-size:12.6px}
 
-  /* MAIN */
   main.content{flex:1;min-width:0;padding:40px 40px 100px}
 
   .hero{margin-bottom:44px}
@@ -68,7 +62,7 @@
   .hero .kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
   .hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.4px;line-height:1.2;
     background:linear-gradient(180deg,#fff,#b8c4ea);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
-  .hero p{color:var(--muted);font-size:15.5px;max-width:680px}
+  .hero p{color:var(--muted);font-size:15.5px;max-width:700px}
 
   .doc-section{margin-bottom:64px}
   .doc-title{display:flex;align-items:center;gap:12px;padding-bottom:16px;margin-bottom:28px;border-bottom:1px solid var(--border)}
@@ -76,44 +70,55 @@
   .doc-title h2{font-size:22px;font-weight:800}
   .doc-title .sub{font-size:12.5px;color:var(--muted)}
 
-  h3{font-size:19px;font-weight:750;margin:36px 0 14px;padding-top:6px;scroll-margin-top:76px}
+  h3{font-size:19px;font-weight:750;margin:38px 0 14px;padding-top:6px;scroll-margin-top:76px}
   h3 .step-badge{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-size:13px;font-weight:800;margin-right:10px;vertical-align:middle}
-  h4{font-size:15.5px;font-weight:700;margin:22px 0 10px;color:var(--text)}
+  h4{font-size:15px;font-weight:700;margin:24px 0 10px;color:var(--text)}
+  h5{font-size:13.5px;font-weight:700;margin:18px 0 8px;color:#c9d4ff}
 
   p{margin:10px 0;color:#c7cee6;font-size:14.5px}
+  ol,ul.plain{margin:10px 0 10px 4px;color:#c7cee6;font-size:14.5px}
+  ol li,ul.plain li{margin:6px 0 6px 20px}
   .meta-line{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:14px}
   .meta-line b{color:var(--text)}
+  .path{font-size:13.5px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:8px 12px;border-radius:10px;margin:10px 0;display:inline-block}
+  .path b{color:var(--text)}
 
   .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);margin:16px 0}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
-  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
-  thead th{background:var(--surface-2);font-weight:700;font-size:12.5px;color:var(--text)}
+  table{width:100%;border-collapse:collapse;font-size:13.3px;min-width:480px}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{background:var(--surface-2);font-weight:700;font-size:12.3px;color:var(--text)}
   tbody tr:hover{background:rgba(91,140,255,.06)}
-  td:first-child{font-weight:600;white-space:nowrap}
+  td:first-child{font-weight:600}
   tbody tr:last-child td{border-bottom:none}
-  code{font-family:var(--mono);font-size:12.8px;background:var(--surface-2);border:1px solid var(--border);padding:2px 6px;border-radius:6px;color:#c9d4ff}
+  code{font-family:var(--mono);font-size:12.6px;background:var(--surface-2);border:1px solid var(--border);padding:2px 6px;border-radius:6px;color:#c9d4ff;word-break:break-all}
 
   pre{
     background:#0a0f22;border:1px solid var(--border);border-radius:var(--radius);
-    padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:12.6px;line-height:1.65;
+    padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:12.4px;line-height:1.65;
     color:#b9c4e6;margin:16px 0;box-shadow:var(--shadow);
   }
-  pre.ascii{font-size:12px}
+  pre.ascii{font-size:11.6px}
 
-  .callout{border-radius:12px;padding:14px 16px;margin:14px 0;font-size:13.8px;border:1px solid;display:flex;gap:10px}
+  .callout{border-radius:12px;padding:14px 16px;margin:14px 0;font-size:13.6px;border:1px solid;display:flex;gap:10px}
   .callout .ic{flex:0 0 auto}
   .callout.warn{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.35);color:#ffe9b0}
   .callout.info{background:rgba(91,140,255,.08);border-color:rgba(91,140,255,.32);color:#cdd9ff}
   .callout.ok{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.32);color:#c9f5e2}
+  .callout.danger{background:rgba(251,113,133,.08);border-color:rgba(251,113,133,.32);color:#ffd3da}
 
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
   .arch-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
   .arch-card h4{margin-top:0}
 
   details.faq{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
-  details.faq summary{padding:13px 16px;cursor:pointer;font-weight:600;font-size:13.8px;list-style:none}
+  details.faq summary{padding:13px 16px;cursor:pointer;font-weight:600;font-size:13.6px;list-style:none}
   details.faq summary::-webkit-details-marker{display:none}
-  details.faq .body{padding:0 16px 14px;color:var(--muted);font-size:13.5px}
+  details.faq .body{padding:0 16px 14px;color:var(--muted);font-size:13.3px}
+
+  .refs{list-style:none;margin:10px 0}
+  .refs li{margin:6px 0;font-size:13.6px}
+  .refs a{text-decoration:none}
+  .refs a:hover{text-decoration:underline}
 
   footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--muted);font-size:12.5px}
 
@@ -137,7 +142,7 @@
   <aside class="side">
     <div class="side-doc">
       <div class="side-doc-title">文档一 · IAM Federation</div>
-      <a href="#doc1-overview">整体架构</a>
+      <a href="#doc1-overview">整体架构 / 环境信息</a>
       <a href="#doc1-s1" class="lvl2">1. 开通 Quick 订阅</a>
       <a href="#doc1-s2" class="lvl2">2. 创建 SAML 客户端</a>
       <a href="#doc1-s3" class="lvl2">3. SAML 属性映射</a>
@@ -148,21 +153,26 @@
       <a href="#doc1-s8" class="lvl2">8. 创建 OIDC 客户端</a>
       <a href="#doc1-s9" class="lvl2">9. Desktop Extension Access</a>
       <a href="#doc1-s10" class="lvl2">10. 验证 Desktop SSO</a>
+      <a href="#doc1-preuser" class="lvl2">前置：Keycloak 用户配置</a>
       <a href="#doc1-faq" class="lvl2">常见问题排查</a>
       <a href="#doc1-security" class="lvl2">安全注意事项</a>
+      <a href="#doc1-refs" class="lvl2">参考文档</a>
     </div>
     <div class="side-doc">
       <div class="side-doc-title">文档二 · Keycloak + AD</div>
-      <a href="#doc2-overview">架构概述</a>
+      <a href="#doc2-overview">架构概述 / 前提条件</a>
       <a href="#doc2-s1" class="lvl2">1. 准备 AD 服务账号</a>
       <a href="#doc2-s2" class="lvl2">2. LDAP User Federation</a>
       <a href="#doc2-s3" class="lvl2">3. Attribute Mapper</a>
       <a href="#doc2-s4" class="lvl2">4. 组同步</a>
       <a href="#doc2-s5" class="lvl2">5. 首次同步</a>
       <a href="#doc2-s6" class="lvl2">6. 验证登录</a>
-      <a href="#doc2-s7" class="lvl2">7. SPNEGO 免密登录</a>
+      <a href="#doc2-ha" class="lvl2">高可用与安全建议</a>
       <a href="#doc2-sync" class="lvl2">同步机制详解</a>
       <a href="#doc2-faq" class="lvl2">常见问题排查</a>
+      <a href="#doc2-flow" class="lvl2">完整认证链路</a>
+      <a href="#doc2-s7" class="lvl2">7. SPNEGO 免密登录</a>
+      <a href="#doc2-refs" class="lvl2">参考文档</a>
     </div>
   </aside>
 
@@ -170,7 +180,7 @@
     <div class="hero">
       <div class="kicker"><span class="pulse"></span> 脱敏版 · 所有域名/IP/账号均为占位符</div>
       <h1>Amazon Quick SSO 完整配置手册</h1>
-      <p>面向 AWS 管理员与 Keycloak 管理员的 SSO 联邦身份配置指南，覆盖 IAM Federation（SAML/OIDC）与企业 Active Directory 集成两大主题。文中所有敏感信息（域名、IP、账户 ID、密码）均已替换为 <code>&lt;PLACEHOLDER&gt;</code> 占位符，可安全公开分享。</p>
+      <p>面向 AWS 管理员与 Keycloak 管理员的 SSO 联邦身份配置指南，覆盖 IAM Federation（SAML/OIDC）与企业 Active Directory 集成两大主题。文中所有敏感信息（域名、IP、账户 ID、密码）均已替换为 <code>&lt;PLACEHOLDER&gt;</code> 占位符，字段与操作路径均按原始配置手册逐条还原，可安全公开分享。</p>
     </div>
 
     <!-- ============ DOC 1 ============ -->
@@ -213,22 +223,23 @@
 
       <div class="callout info"><span class="ic">💡</span><div><b>打通机制：</b> Web 端 SAML NameID (email) = Desktop 端 OIDC id_token email claim = Quick 用户 email → 自动识别为同一用户。</div></div>
 
-      <h4>环境信息占位符</h4>
+      <h4>环境信息（按实际替换）</h4>
       <div class="table-wrap">
         <table>
           <thead><tr><th>项目</th><th>占位符</th><th>说明</th></tr></thead>
           <tbody>
             <tr><td>AWS 账户 ID</td><td><code>&lt;AWS_ACCOUNT_ID&gt;</code></td><td>12 位数字</td></tr>
-            <tr><td>Quick 订阅模式</td><td>用户名密码 + SSO</td><td>选定后不可更改</td></tr>
+            <tr><td>Quick 订阅模式</td><td>用户名密码 + SSO（IAM Federation）</td><td>选定后不可更改</td></tr>
             <tr><td>Identity Region</td><td>us-east-1</td><td>Desktop 硬性要求</td></tr>
-            <tr><td>Keycloak 域名</td><td><code>&lt;KEYCLOAK_DOMAIN&gt;</code></td><td>如 keycloak.example.com</td></tr>
-            <tr><td>Keycloak Realm</td><td><code>&lt;REALM_NAME&gt;</code></td><td>建议不含空格</td></tr>
-            <tr><td>OIDC Client ID</td><td><code>&lt;OIDC_CLIENT_ID&gt;</code></td><td>如 amazon-quick-desktop</td></tr>
-            <tr><td>IAM SAML Provider 名称</td><td><code>&lt;SAML_PROVIDER_NAME&gt;</code></td><td>如 KeycloakIdP</td></tr>
-            <tr><td>IAM Role 名称</td><td><code>&lt;ROLE_NAME&gt;</code></td><td>如 Quick-Federation-Role</td></tr>
+            <tr><td>Keycloak 域名</td><td><code>&lt;KEYCLOAK_DOMAIN&gt;</code></td><td>如 <code>keycloak.example.com</code></td></tr>
+            <tr><td>Keycloak Realm</td><td><code>&lt;REALM_NAME&gt;</code></td><td>如 <code>quickdesktop</code>（建议不含空格）</td></tr>
+            <tr><td>OIDC Client ID</td><td><code>&lt;OIDC_CLIENT_ID&gt;</code></td><td>如 <code>amazon-quick-desktop</code></td></tr>
+            <tr><td>IAM SAML Provider 名称</td><td><code>&lt;SAML_PROVIDER_NAME&gt;</code></td><td>如 <code>KeycloakIdP</code></td></tr>
+            <tr><td>IAM Role 名称</td><td><code>&lt;ROLE_NAME&gt;</code></td><td>如 <code>Quick-Federation-Role</code></td></tr>
           </tbody>
         </table>
       </div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>如果 Realm 名称含空格，URL 中需用 <code>%20</code> 编码。<b>建议 Realm 名称不要包含空格。</b></div></div>
 
       <h3 id="doc1-s1"><span class="step-badge">1</span>开通 Amazon Quick 订阅</h3>
       <div class="meta-line"><span>操作人：<b>AWS 管理员</b></span><span>耗时：<b>约 10 分钟</b></span></div>
@@ -237,73 +248,129 @@
           <thead><tr><th>#</th><th>操作</th><th>备注</th></tr></thead>
           <tbody>
             <tr><td>1</td><td>登录 AWS Console → 切换到目标子账户</td><td></td></tr>
-            <tr><td>2</td><td>搜索 Quick 进入服务（Analytics 分类下）</td><td></td></tr>
-            <tr><td>3</td><td>输入 Account name（唯一标识）</td><td></td></tr>
-            <tr><td>4</td><td>输入 Notification email（管理员邮箱）</td><td></td></tr>
-            <tr><td>5</td><td>SPICE Region 选 US East (N. Virginia)</td><td>Desktop 硬性要求 identity region 为 us-east-1</td></tr>
-            <tr><td>6</td><td>身份验证方式选 Password-based or Single-Sign On</td><td>⚠️ 选定后不可更改</td></tr>
-            <tr><td>7</td><td>点击 Create account</td><td></td></tr>
+            <tr><td>2</td><td>搜索 Quick 进入服务（在 Analytics 分类下）</td><td></td></tr>
+            <tr><td>3</td><td>输入 <b>Account name</b>（唯一标识）</td><td></td></tr>
+            <tr><td>4</td><td>输入 <b>Notification email</b>（管理员邮箱）</td><td></td></tr>
+            <tr><td>5</td><td>选择 SPICE Region 为 <b>US East (N. Virginia)</b></td><td>Desktop 硬性要求 identity region 为 us-east-1</td></tr>
+            <tr><td>6</td><td>身份验证方式选择 <b>Password-based or Single-Sign On</b></td><td>⚠️ 选定后不可更改</td></tr>
+            <tr><td>7</td><td>点击 <b>Create account</b></td><td></td></tr>
           </tbody>
         </table>
       </div>
+      <div class="callout ok"><span class="ic">✅</span><div>产出：Amazon Quick 账户创建完成</div></div>
 
       <h3 id="doc1-s2"><span class="step-badge">2</span>Keycloak 创建 SAML 客户端（Quick Web 用）</h3>
       <div class="meta-line"><span>操作人：<b>Keycloak 管理员</b></span><span>耗时：<b>约 15 分钟</b></span></div>
+
       <h4>2.1 创建客户端</h4>
+      <p class="path">Keycloak 管理控制台 → Realm <b>&lt;REALM_NAME&gt;</b> → 客户端 → 创建客户端</p>
       <div class="table-wrap"><table><tbody>
         <tr><td>客户端类型</td><td>SAML</td></tr>
         <tr><td>客户端 ID</td><td><code>urn:amazon:webservices</code></td></tr>
         <tr><td>名称</td><td>Amazon Quick Web</td></tr>
         <tr><td>启用</td><td>开</td></tr>
       </tbody></table></div>
+
       <h4>2.2 访问设置</h4>
       <div class="table-wrap"><table><tbody>
+        <tr><td>根网址</td><td>留空</td></tr>
+        <tr><td>主页 URL</td><td>留空</td></tr>
         <tr><td>有效的重定向 URI</td><td><code>https://signin.aws.amazon.com/saml</code></td></tr>
+        <tr><td>有效的注销后重定向 URI</td><td>留空</td></tr>
         <tr><td>IDP 发起的 SSO URL 名称</td><td><code>urn:amazon:webservices</code></td></tr>
+        <tr><td>IDP 发起的 SSO 中继状态</td><td>留空</td></tr>
         <tr><td>主 SAML 处理 URL</td><td><code>https://signin.aws.amazon.com/saml</code></td></tr>
       </tbody></table></div>
-      <h4>2.3 SAML 功能 / 2.4 签名和加密</h4>
+
+      <h4>2.3 SAML 功能</h4>
       <div class="table-wrap"><table><tbody>
         <tr><td>姓名 ID 格式</td><td><code>email</code></td></tr>
-        <tr><td>强制名称 ID 格式 / 强制 POST 绑定</td><td>开</td></tr>
-        <tr><td>签署文件 / 签署断言</td><td>开</td></tr>
-        <tr><td>签名算法</td><td>RSA_SHA256</td></tr>
+        <tr><td>强制名称 ID 格式</td><td><b>开</b></td></tr>
+        <tr><td>强制 POST 绑定</td><td><b>开</b></td></tr>
+        <tr><td>强制神器绑定</td><td>关</td></tr>
+        <tr><td>包括验证声明</td><td><b>开</b></td></tr>
+        <tr><td>包括一次性使用的条件</td><td>关</td></tr>
+        <tr><td>优化重定向签名密钥查找</td><td>关</td></tr>
       </tbody></table></div>
 
+      <h4>2.4 签名和加密</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>签署文件</td><td><b>开</b></td></tr>
+        <tr><td>签署断言</td><td><b>开</b></td></tr>
+        <tr><td>签名算法</td><td>RSA_SHA256</td></tr>
+        <tr><td>SAML 签名密钥名称</td><td>NONE</td></tr>
+        <tr><td>规范化方法</td><td>EXCLUSIVE</td></tr>
+      </tbody></table></div>
+      <p>保存客户端。</p>
+
       <h3 id="doc1-s3"><span class="step-badge">3</span>Keycloak 配置 SAML Attribute Mapping</h3>
-      <p>路径：客户端 → <code>urn:amazon:webservices</code> → 客户端范围 → 映射 → 配置新映射</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Mapper</th><th>类型</th><th>SAML Attribute Name</th><th>用途</th></tr></thead>
-          <tbody>
-            <tr><td>AWS Role</td><td>Hardcoded Attribute</td><td><code>.../SAML/Attributes/Role</code></td><td>Role ARN + Provider ARN（逗号分隔，无空格）</td></tr>
-            <tr><td>Session Role</td><td>User Property (email)</td><td><code>.../SAML/Attributes/RoleSessionName</code></td><td>会话标识，URL 必须填在 Attribute Name 字段</td></tr>
-            <tr><td>PrincipalTag Email</td><td>User Property (email)</td><td><code>.../SAML/Attributes/PrincipalTag:Email</code></td><td>Quick 强制要求，缺失报 invalid principal tag</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout warn"><span class="ic">⚠️</span><div>逗号前后不可有空格；Role ARN 在前，Provider ARN 在后。URL 必须填在 <b>SAML Attribute Name</b> 字段，不是 Friendly Name。</div></div>
+      <p class="path">客户端 → <b>urn:amazon:webservices</b> → 客户端范围 标签页 → <b>urn:amazon:webservices-dedicated</b> → 映射 → 配置新映射</p>
+
+      <h5>Mapper 1：AWS Role（Hardcoded Attribute）</h5>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>映射器类型</td><td>Hardcoded Attribute</td></tr>
+        <tr><td>名称</td><td><code>AWS Role</code></td></tr>
+        <tr><td>Friendly Name</td><td>留空</td></tr>
+        <tr><td>SAML Attribute Name</td><td><code>https://aws.amazon.com/SAML/Attributes/Role</code></td></tr>
+        <tr><td>SAML Attribute NameFormat</td><td>URI Reference</td></tr>
+        <tr><td>Attribute value</td><td><code>arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:role/&lt;ROLE_NAME&gt;,arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:saml-provider/&lt;SAML_PROVIDER_NAME&gt;</code></td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>逗号前后不可有空格。Role ARN 在前，Provider ARN 在后。</div></div>
+
+      <h5>Mapper 2：RoleSessionName（User Property）</h5>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>映射器类型</td><td>User Property</td></tr>
+        <tr><td>名称</td><td><code>Session Role</code></td></tr>
+        <tr><td>特性 (Property)</td><td><code>email</code></td></tr>
+        <tr><td>Friendly Name</td><td>留空</td></tr>
+        <tr><td><b>SAML Attribute Name</b></td><td><code>https://aws.amazon.com/SAML/Attributes/RoleSessionName</code></td></tr>
+        <tr><td>SAML Attribute NameFormat</td><td>URI Reference</td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>注意：URL 必须填在 <b>SAML Attribute Name</b> 字段，不是 Friendly Name！</div></div>
+
+      <h5>Mapper 3：PrincipalTag:Email（User Property）</h5>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>映射器类型</td><td>User Property</td></tr>
+        <tr><td>名称</td><td><code>PrincipalTag Email</code></td></tr>
+        <tr><td>特性 (Property)</td><td><code>email</code></td></tr>
+        <tr><td>Friendly Name</td><td>留空</td></tr>
+        <tr><td><b>SAML Attribute Name</b></td><td><code>https://aws.amazon.com/SAML/Attributes/PrincipalTag:Email</code></td></tr>
+        <tr><td>SAML Attribute NameFormat</td><td>URI Reference</td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>Quick 强制要求此属性，缺失会报 "invalid principal tag" 错误。</div></div>
 
       <h3 id="doc1-s4"><span class="step-badge">4</span>AWS IAM 创建 SAML Identity Provider</h3>
       <div class="meta-line"><span>操作人：<b>AWS 管理员</b></span><span>耗时：<b>约 5 分钟</b></span></div>
-      <p>下载 Keycloak Metadata XML：</p>
+
+      <h4>4.1 下载 Keycloak Metadata XML</h4>
+      <p>浏览器访问以下地址，另存为 <code>keycloak-metadata.xml</code>：</p>
       <pre>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/protocol/saml/descriptor</pre>
+
+      <h4>4.2 创建 SAML Provider</h4>
+      <p class="path">AWS Console → IAM → 身份提供商 → 添加提供商</p>
       <div class="table-wrap"><table><tbody>
         <tr><td>提供商类型</td><td>SAML</td></tr>
         <tr><td>提供商名称</td><td><code>&lt;SAML_PROVIDER_NAME&gt;</code></td></tr>
-        <tr><td>元数据文档</td><td>上传下载的 metadata XML</td></tr>
+        <tr><td>元数据文档</td><td>上传 <code>keycloak-metadata.xml</code></td></tr>
       </tbody></table></div>
+      <p>点击 <b>添加提供商</b>（遇到安全风险提示点 <b>Accept security risk</b>）</p>
       <div class="callout ok"><span class="ic">✅</span><div>产出 ARN：<code>arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:saml-provider/&lt;SAML_PROVIDER_NAME&gt;</code></div></div>
 
       <h3 id="doc1-s5"><span class="step-badge">5</span>AWS IAM 创建 Federation Role</h3>
       <div class="meta-line"><span>操作人：<b>AWS 管理员</b></span><span>耗时：<b>约 10 分钟</b></span></div>
+
       <h4>5.1 创建角色</h4>
+      <p class="path">IAM → 角色 → 创建角色</p>
       <div class="table-wrap"><table><tbody>
         <tr><td>受信任实体类型</td><td>SAML 2.0 联合身份验证</td></tr>
-        <tr><td>访问级别</td><td>✅ 允许编程访问和 AWS 管理控制台访问</td></tr>
+        <tr><td>SAML 2.0 提供商</td><td>选择 <code>&lt;SAML_PROVIDER_NAME&gt;</code></td></tr>
+        <tr><td>访问级别</td><td>勾选 ✅ <b>允许编程访问和 AWS 管理控制台访问</b></td></tr>
+        <tr><td>权限策略</td><td>跳过（下一步用 CLI 添加）</td></tr>
         <tr><td>角色名称</td><td><code>&lt;ROLE_NAME&gt;</code></td></tr>
       </tbody></table></div>
+
       <h4>5.2 编辑 Trust Policy（添加 sts:TagSession）</h4>
+      <p class="path">IAM → 角色 → <b>&lt;ROLE_NAME&gt;</b> → 信任关系 → 编辑信任策略：</p>
       <pre>{
     "Version": "2012-10-17",
     "Statement": [
@@ -324,8 +391,10 @@
         }
     ]
 }</pre>
-      <div class="callout warn"><span class="ic">⚠️</span><div>必须加 <code>sts:TagSession</code>！因为 SAML 断言中包含 PrincipalTag:Email，没有此权限会报 "Not authorized to perform sts:AssumeRoleWithSAML"。</div></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>必须加 <code>sts:TagSession</code>！因为 SAML 断言中包含 <code>PrincipalTag:Email</code>，没有此权限会报 "Not authorized to perform sts:AssumeRoleWithSAML"。</div></div>
+
       <h4>5.3 添加权限策略（CloudShell CLI）</h4>
+      <p>打开 AWS CloudShell 执行：</p>
       <pre>aws iam put-role-policy \
   --role-name &lt;ROLE_NAME&gt; \
   --policy-name QuickFederationPolicy \
@@ -349,73 +418,137 @@
       }
     ]
   }'</pre>
-      <div class="callout info"><span class="ic">💡</span><div>如需创建 Author Pro 用户，将 <code>quicksight:CreateUser</code> 替换为 <code>quicksight:CreateAuthorPro</code>（仅 CLI 支持）。不要在 IAM 控制台 UI 编辑此策略。</div></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>
+        注意事项：<br>
+        · <code>SamlAutoProvision</code> 使用 <code>Resource: "*"</code> 确保 SAML 首次登录自动创建不受 ARN 格式限制<br>
+        · <code>ManageUsersAndRoles</code> 使用 <code>user/default/*</code> 限定范围到 default 命名空间<br>
+        · 如需创建 Author Pro 用户，将 <code>quicksight:CreateUser</code> 替换为 <code>quicksight:CreateAuthorPro</code>（仅 CLI 支持，控制台不识别此 Action）<br>
+        · <b>不要在 IAM 控制台 UI 编辑此策略</b>（编辑器不识别部分 Action 名称和 Resource 变量）
+      </div></div>
 
       <h3 id="doc1-s6"><span class="step-badge">6</span>配置 Quick Web SP-initiated SSO</h3>
-      <div class="meta-line"><span>操作人：<b>Quick 管理员</b></span><span>耗时：<b>约 5 分钟</b></span></div>
+      <div class="meta-line"><span>操作人：<b>Quick 管理员</b></span><span>耗时：<b>约 5 分钟</b></span><span>前提：<b>步骤 2-5 全部完成</b></span></div>
+      <p class="path">登录 Amazon Quick → 右上角用户菜单 → <b>Manage Amazon Quick</b> → 左侧 <b>SSO</b></p>
       <div class="table-wrap"><table><tbody>
-        <tr><td>状态</td><td>开启</td></tr>
+        <tr><td>状态</td><td><b>开启</b></td></tr>
         <tr><td>IdP URL</td><td><code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/protocol/saml/clients/urn%3Aamazon%3Awebservices</code></td></tr>
         <tr><td>IdP 重定向 URL 参数</td><td><code>RelayState</code></td></tr>
       </tbody></table></div>
+      <p>点击 <b>保存</b>。</p>
 
       <h3 id="doc1-s7"><span class="step-badge">7</span>验证 Web SSO</h3>
-      <p>无痕窗口打开 Quick SSO 页面「首先测试您的 IdP」链接 → 跳转 Keycloak 登录 → 认证成功后自动跳转或选择角色 → 首次登录输入 email → 成功进入 Quick Web。</p>
+      <ol>
+        <li>打开<b>无痕浏览器窗口</b></li>
+        <li>复制 Quick SSO 页面的 <b>"首先测试您的 IdP"</b> 链接</li>
+        <li>应跳转到 Keycloak 登录页</li>
+        <li>输入 Keycloak 用户的用户名/密码</li>
+        <li>认证成功后：
+          <ul class="plain">
+            <li>如只配了一个 Role → 自动跳转到 Quick</li>
+            <li>如配了多个 Role → 显示"选择角色"页面 → 选择对应 Role → 登录</li>
+          </ul>
+        </li>
+        <li>首次登录显示"欢迎访问 Quick" → 输入 email → 点击 <b>继续</b></li>
+        <li>成功进入 Amazon Quick Web 界面</li>
+      </ol>
+      <div class="callout ok"><span class="ic">✅</span><div><b>验证通过条件：</b> 能正常进入 Amazon Quick Web 界面</div></div>
 
       <h3 id="doc1-s8"><span class="step-badge">8</span>Keycloak 创建 OIDC 客户端（Quick Desktop 用）</h3>
       <div class="meta-line"><span>操作人：<b>Keycloak 管理员</b></span><span>耗时：<b>约 5 分钟</b></span></div>
-      <div class="grid-2">
-        <div class="arch-card">
-          <h4>客户端设置</h4>
-          <p>类型：OpenID Connect<br>Client Authentication：关（Public Client）<br>Authorization：关</p>
-        </div>
-        <div class="arch-card">
-          <h4>登录设置</h4>
-          <p>有效的重定向 URI：<code>http://localhost:18080</code><br>Web origins：同上</p>
-        </div>
-        <div class="arch-card">
-          <h4>高级设置</h4>
-          <p>PKCE：<b>S256</b>（必须）<br>Grant Types：Authorization Code + Refresh Token</p>
-        </div>
-        <div class="arch-card">
-          <h4>客户端范围</h4>
-          <p>确保分配：<code>openid</code> <code>email</code> <code>profile</code> <code>offline_access</code></p>
-        </div>
-      </div>
+      <p class="path">Keycloak 管理控制台 → Realm <b>&lt;REALM_NAME&gt;</b> → 客户端 → 创建客户端</p>
+
+      <h4>8.1 客户端设置</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>客户端类型</td><td>OpenID Connect</td></tr>
+        <tr><td>客户端 ID</td><td><code>&lt;OIDC_CLIENT_ID&gt;</code>（如 <code>amazon-quick-desktop</code>）</td></tr>
+        <tr><td>名称</td><td>Amazon Quick Desktop</td></tr>
+        <tr><td>Client Authentication</td><td><b>关</b>（Public Client，无 client_secret）</td></tr>
+        <tr><td>Authorization</td><td>关</td></tr>
+      </tbody></table></div>
+
+      <h4>8.2 登录设置</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>根 URL</td><td>留空</td></tr>
+        <tr><td>有效的重定向 URI</td><td><code>http://localhost:18080</code></td></tr>
+        <tr><td>Web origins</td><td><code>http://localhost:18080</code></td></tr>
+      </tbody></table></div>
+
+      <h4>8.3 高级设置</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Proof Key for Code Exchange (PKCE)</td><td><b>S256</b>（必须）</td></tr>
+        <tr><td>Grant Types</td><td>Authorization Code ✅ + Refresh Token ✅</td></tr>
+      </tbody></table></div>
+
+      <h4>8.4 客户端范围</h4>
+      <p>确保以下 Scope 已分配：<code>openid</code>、<code>email</code>、<code>profile</code>、<code>offline_access</code></p>
+      <p>保存。</p>
 
       <h3 id="doc1-s9"><span class="step-badge">9</span>配置 Quick Desktop Extension Access</h3>
       <div class="meta-line"><span>操作人：<b>Quick 管理员</b></span><span>耗时：<b>约 10 分钟</b></span></div>
+      <p class="path">Quick 管理控制台 → <b>Permissions</b> → <b>Extension access</b> → <b>Add extension access</b></p>
+      <p>选择 <b>Desktop application for Quick</b>，填入：</p>
       <div class="table-wrap"><table><tbody>
+        <tr><td>Name</td><td>Keycloak Desktop SSO</td></tr>
         <tr><td>Issuer URL</td><td><code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;</code></td></tr>
-        <tr><td>Authorization Endpoint</td><td><code>.../protocol/openid-connect/auth</code></td></tr>
-        <tr><td>Token Endpoint</td><td><code>.../protocol/openid-connect/token</code></td></tr>
-        <tr><td>JWKS URI</td><td><code>.../protocol/openid-connect/certs</code></td></tr>
+        <tr><td>Authorization Endpoint</td><td><code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/protocol/openid-connect/auth</code></td></tr>
+        <tr><td>Token Endpoint</td><td><code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/protocol/openid-connect/token</code></td></tr>
+        <tr><td>JWKS URI</td><td><code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/protocol/openid-connect/certs</code></td></tr>
         <tr><td>Client ID</td><td><code>&lt;OIDC_CLIENT_ID&gt;</code></td></tr>
       </tbody></table></div>
-      <div class="callout warn"><span class="ic">⚠️</span><div>Extension Access 创建后<b>不可编辑</b>，填错只能删除重建！</div></div>
+      <div class="callout danger"><span class="ic">⛔</span><div>Extension Access 创建后<b>不可编辑</b>，填错只能删除重建！请仔细核对所有 URL。</div></div>
+      <p>点击 <b>Add</b> → 然后去 <b>Connect apps and data</b> → <b>Extensions</b> → <b>Add extension</b> → 选择刚创建的 Extension Access → <b>Create</b></p>
 
       <h3 id="doc1-s10"><span class="step-badge">10</span>验证 Desktop SSO</h3>
-      <p>启动 Desktop 客户端选择 Enterprise login → 弹出 Keycloak 登录页 → 输入企业账号密码 → 自动打开客户端 → 确认与 Web 端为同一 email 用户。</p>
+      <ol>
+        <li>下载安装 Amazon Quick Desktop 客户端</li>
+        <li>启动时选择 <b>Enterprise login</b></li>
+        <li>应弹出 Keycloak 登录页（浏览器窗口）</li>
+        <li>输入企业账号密码</li>
+        <li>完成认证后 Desktop 自动打开</li>
+        <li>确认 Desktop 中的用户身份与 Web 端一致（同一 email）</li>
+      </ol>
+      <div class="callout ok"><span class="ic">✅</span><div><b>验证通过条件：</b> Desktop 成功登录并进入主界面</div></div>
+
+      <h3 id="doc1-preuser">前置条件：Keycloak 用户配置</h3>
+      <p>在测试前，确保 Keycloak 中已创建测试用户：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Username</td><td>填写用户名</td></tr>
+        <tr><td>Email</td><td><b>必填</b>，且与期望的 Quick 用户 email 一致</td></tr>
+        <tr><td>Email Verified</td><td><b>必须开启 (ON)</b></td></tr>
+        <tr><td>Password</td><td>在 Credentials 标签页设置，Temporary = OFF</td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div>如果 Email Verified 为 OFF，Keycloak 不会在 SAML/OIDC Token 中返回 email claim，导致登录失败。</div></div>
 
       <h3 id="doc1-faq">常见问题排查</h3>
-      <details class="faq"><summary>"Client not found"</summary><div class="body">Keycloak SAML 客户端未配置 IDP 发起的 SSO URL 名称 → 填写 <code>urn:amazon:webservices</code></div></details>
-      <details class="faq"><summary>"Your request included an invalid SAML response"</summary><div class="body">缺少 Mapper 或格式错误 → 检查 3 个 Mapper 是否齐全；Role ARN 逗号无空格；开启"签署断言"</div></details>
-      <details class="faq"><summary>"RoleSessionName is required"</summary><div class="body">URL 填到了 Friendly Name 里 → 必须填在 SAML Attribute Name 字段</div></details>
-      <details class="faq"><summary>"invalid principal tag"</summary><div class="body">缺少 PrincipalTag:Email Mapper → 添加第 3 个 Mapper</div></details>
-      <details class="faq"><summary>"Not authorized to perform sts:AssumeRoleWithSAML"</summary><div class="body">Trust Policy 缺少 sts:TagSession → 编辑信任策略添加</div></details>
-      <details class="faq"><summary>Desktop redirect_uri_mismatch</summary><div class="body">OIDC 客户端 Redirect URI 不匹配 → 精确设置为 <code>http://localhost:18080</code>，末尾不加 /</div></details>
-      <details class="faq"><summary>Desktop 频繁要求重新登录</summary><div class="body">未启用 Refresh Token 或 offline_access scope → Keycloak OIDC 客户端启用两者</div></details>
+      <details class="faq"><summary>"Client not found"</summary><div class="body">原因：Keycloak SAML 客户端未配置 IDP 发起的 SSO URL 名称。解决：填写 <code>urn:amazon:webservices</code></div></details>
+      <details class="faq"><summary>"Your request included an invalid SAML response"</summary><div class="body">原因：缺少 Mapper 或格式错误。解决：检查 3 个 Mapper 是否齐全；检查 Role ARN 逗号无空格；开启"签署断言"</div></details>
+      <details class="faq"><summary>"RoleSessionName is required"</summary><div class="body">原因：RoleSessionName Mapper 的 URL 填到了 Friendly Name 里。解决：URL 必须在 <b>SAML Attribute Name</b> 字段</div></details>
+      <details class="faq"><summary>"invalid principal tag"</summary><div class="body">原因：缺少 PrincipalTag:Email Mapper。解决：添加第 3 个 Mapper</div></details>
+      <details class="faq"><summary>"Not authorized to perform sts:AssumeRoleWithSAML"</summary><div class="body">原因：Trust Policy 缺少 <code>sts:TagSession</code>。解决：编辑信任策略添加 <code>sts:TagSession</code></div></details>
+      <details class="faq"><summary>"必须拥有 quicksight:CreateUser 权限"</summary><div class="body">原因：IAM Policy 中 Resource ARN 格式错误。解决：CreateUser 使用 <code>Resource: "*"</code>；或确认 ARN 格式正确</div></details>
+      <details class="faq"><summary>Desktop redirect_uri_mismatch</summary><div class="body">原因：OIDC 客户端 Redirect URI 不匹配。解决：精确设置为 <code>http://localhost:18080</code>，末尾不加 <code>/</code></div></details>
+      <details class="faq"><summary>Desktop 频繁要求重新登录</summary><div class="body">原因：未启用 Refresh Token 或 offline_access scope。解决：Keycloak OIDC 客户端启用 Refresh Token + offline_access</div></details>
+      <details class="faq"><summary>Desktop Token validation failure</summary><div class="body">原因：Issuer URL 配置错误。解决：确认 Extension Access 中 Issuer URL 与 Keycloak <code>.well-known</code> 返回的 issuer 完全一致</div></details>
 
       <h3 id="doc1-security">安全注意事项</h3>
       <div class="table-wrap">
         <table>
           <tbody>
             <tr><td>TLS 证书</td><td>IdP 端点必须使用 CA 签发的 HTTPS 证书，自签名证书会导致 token exchange failed</td></tr>
-            <tr><td>用户 email 一致性</td><td>Keycloak 用户 email = Quick Web NameID email = Desktop id_token email，三者须完全一致（大小写敏感）</td></tr>
+            <tr><td>安全组/防火墙</td><td>如 Keycloak 部署在私有网络，需放行 <code>/realms/{realm}/protocol/openid-connect/certs</code> 公开访问（us-east-1）；如通过 CloudFront 公网暴露则无需额外配置</td></tr>
+            <tr><td>用户 email 一致性</td><td>Keycloak 用户 email = Quick Web NameID email = Desktop id_token email，三者必须完全一致（大小写敏感）</td></tr>
             <tr><td>Email Verified</td><td>Keycloak 用户的 Email Verified 开关必须为 ON</td></tr>
           </tbody>
         </table>
       </div>
+
+      <h3 id="doc1-refs">参考文档</h3>
+      <ul class="refs">
+        <li><a href="https://docs.aws.amazon.com/quick/latest/userguide/desktop-enterprise-setup.html" target="_blank" rel="noopener">Amazon Quick Desktop Enterprise Setup</a></li>
+        <li><a href="https://docs.aws.amazon.com/quick/latest/userguide/iam-policy-examples.html" target="_blank" rel="noopener">IAM Policy Examples for Quick</a></li>
+        <li><a href="https://docs.aws.amazon.com/quick/latest/userguide/setup-quicksight-to-idp.html" target="_blank" rel="noopener">Setting up SP-initiated SSO</a></li>
+        <li><a href="https://github.com/xina0311/amazon-quick-desktop-federation-with-keycloak" target="_blank" rel="noopener">Keycloak 一键部署（CloudFormation）</a></li>
+      </ul>
     </section>
 
     <!-- ============ DOC 2 ============ -->
@@ -424,7 +557,7 @@
         <div class="ico">🗂️</div>
         <div>
           <h2>Keycloak 集成企业 Active Directory 配置手册</h2>
-          <div class="sub">Keycloak 作为 Amazon Quick 的 IdP，用户从企业 AD 自动同步 · v1.0</div>
+          <div class="sub">Keycloak 作为 Amazon Quick 的 IdP，用户从企业 AD 自动同步，无需手动创建 · v1.0</div>
         </div>
       </div>
 
@@ -452,73 +585,177 @@
             ▼                            ▼
      Amazon Quick Web              Amazon Quick Desktop</pre>
 
-      <div class="callout info"><span class="ic">💡</span><div><b>核心理念：</b> AD 是"数据源"，Keycloak 是"翻译官"（用 LDAP 和 AD 对话，用 SAML/OIDC 和 AWS 对话），Quick 是"消费方"。</div></div>
+      <div class="callout info"><span class="ic">💡</span><div><b>核心理念：</b><br>
+        · AD 是"数据源"（用户在哪里）<br>
+        · Keycloak 是"翻译官"（用 LDAP 和 AD 对话，用 SAML/OIDC 和 AWS 对话）<br>
+        · Quick 是"消费方"（接收翻译后的身份信息）
+      </div></div>
+
+      <h4>前提条件</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>条件</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>Keycloak 已部署并可访问</td><td>如 EKS + CloudFront HTTPS</td></tr>
+            <tr><td>AD 域控制器网络可达</td><td>Keycloak 所在网络能访问 AD 的 LDAP 端口</td></tr>
+            <tr><td>AD 服务账号已创建</td><td>用于 Keycloak 连接 AD（只需读权限）</td></tr>
+            <tr><td>AD 中用户有 email 属性</td><td>Quick SSO 打通的必要条件</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3 id="doc2-s1"><span class="step-badge">1</span>准备 AD 服务账号</h3>
       <div class="meta-line"><span>操作人：<b>AD 管理员</b></span></div>
+      <p>在 AD 中创建一个专用服务账号供 Keycloak 使用：</p>
       <div class="table-wrap"><table><tbody>
         <tr><td>账号名</td><td><code>svc-keycloak</code></td></tr>
+        <tr><td>位置</td><td><code>OU=ServiceAccounts,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td></tr>
         <tr><td>权限</td><td><b>只读</b>（Domain Users 组即可，无需 Domain Admins）</td></tr>
-        <tr><td>密码策略</td><td>永不过期（或定期轮换时同步更新 Keycloak）</td></tr>
+        <tr><td>密码策略</td><td>设置为永不过期（或定期轮换时同步更新 Keycloak 配置）</td></tr>
       </tbody></table></div>
+      <p>记录以下信息：</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <thead><tr><th>参数</th><th>示例值</th><th>说明</th></tr></thead>
           <tbody>
-            <tr><td><code>&lt;AD_HOST&gt;</code></td><td>AD 域控 IP 或主机名</td></tr>
-            <tr><td><code>&lt;AD_PORT&gt;</code></td><td>389（LDAP）或 636（LDAPS，建议加密）</td></tr>
-            <tr><td><code>&lt;BIND_DN&gt;</code></td><td>服务账号完整 DN</td></tr>
-            <tr><td><code>&lt;USERS_DN&gt; / &lt;GROUPS_DN&gt;</code></td><td>用户/组搜索起始 OU</td></tr>
+            <tr><td><code>&lt;AD_HOST&gt;</code></td><td><code>&lt;DC_IP&gt;</code> 或 <code>&lt;DC1_FQDN&gt;</code></td><td>AD 域控 IP 或主机名</td></tr>
+            <tr><td><code>&lt;AD_PORT&gt;</code></td><td><code>389</code>（LDAP）或 <code>636</code>（LDAPS）</td><td>建议用 636 加密</td></tr>
+            <tr><td><code>&lt;BIND_DN&gt;</code></td><td><code>CN=svc-keycloak,OU=ServiceAccounts,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td><td>服务账号的完整 DN</td></tr>
+            <tr><td><code>&lt;BIND_PASSWORD&gt;</code></td><td>—</td><td>服务账号密码</td></tr>
+            <tr><td><code>&lt;USERS_DN&gt;</code></td><td><code>OU=Users,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td><td>用户搜索的起始位置</td></tr>
+            <tr><td><code>&lt;GROUPS_DN&gt;</code></td><td><code>OU=Groups,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td><td>组搜索的起始位置（可选）</td></tr>
           </tbody>
         </table>
       </div>
 
       <h3 id="doc2-s2"><span class="step-badge">2</span>Keycloak 配置 LDAP User Federation</h3>
       <div class="meta-line"><span>操作人：<b>Keycloak 管理员</b></span><span>耗时：<b>约 15 分钟</b></span></div>
-      <div class="grid-2">
-        <div class="arch-card">
-          <h4>基本设置</h4>
-          <p>Vendor：Active Directory<br>Connection URL：<code>ldaps://&lt;AD_HOST&gt;:636</code><br>Bind type：simple</p>
-        </div>
-        <div class="arch-card">
-          <h4>搜索设置</h4>
-          <p>Edit mode：READ_ONLY<br>Username LDAP attribute：<code>sAMAccountName</code><br>Search scope：Subtree</p>
-        </div>
-      </div>
-      <div class="callout info"><span class="ic">💡</span><div>填完连接信息后点击 <b>Test connection</b> 和 <b>Test authentication</b> 验证连通性。</div></div>
 
-      <h4>用户过滤（控制谁能访问 Quick）</h4>
-      <p>通过 AD 用户组过滤，只同步特定组成员，不在组里的 AD 用户无法登录 Quick。</p>
-      <div class="table-wrap"><table><tbody>
-        <tr><td>User LDAP Filter</td><td><code>(memberOf=CN=&lt;QUICK_USERS_GROUP&gt;,OU=Groups,DC=&lt;domain&gt;,DC=&lt;tld&gt;)</code></td></tr>
-      </tbody></table></div>
-      <div class="callout warn"><span class="ic">⚠️</span><div>组名和 OU 路径需替换为实际 AD 结构。</div></div>
+      <h4>2.1 进入配置页面</h4>
+      <p class="path">Keycloak 管理控制台 → Realm <b>&lt;REALM_NAME&gt;</b> → 左侧菜单 → <b>User federation</b> → <b>Add provider</b> → 选择 <b>LDAP</b></p>
 
-      <h4>同步设置</h4>
+      <h4>2.2 基本设置</h4>
       <div class="table-wrap">
         <table>
+          <thead><tr><th>字段</th><th>值</th><th>说明</th></tr></thead>
           <tbody>
-            <tr><td>Import users</td><td>开</td></tr>
-            <tr><td>Periodic full sync</td><td>开 · 86400 秒（24 小时）</td></tr>
-            <tr><td>Periodic changed users sync</td><td>开 · 300 秒（5 分钟）</td></tr>
+            <tr><td>Console display name</td><td><code>Corporate AD</code></td><td>自定义显示名</td></tr>
+            <tr><td>Vendor</td><td><b>Active Directory</b></td><td>选择后自动填充部分默认值</td></tr>
+            <tr><td>Connection URL</td><td><code>ldaps://&lt;AD_HOST&gt;:636</code></td><td>建议用 LDAPS；如不支持用 <code>ldap://&lt;AD_HOST&gt;:389</code></td></tr>
+            <tr><td>Enable StartTLS</td><td>关（使用 LDAPS 时）/ 开（使用 LDAP 时建议开启）</td><td></td></tr>
+            <tr><td>Bind type</td><td>simple</td><td></td></tr>
+            <tr><td>Bind DN</td><td><code>&lt;BIND_DN&gt;</code></td><td>服务账号完整 DN</td></tr>
+            <tr><td>Bind credential</td><td><code>&lt;BIND_PASSWORD&gt;</code></td><td>服务账号密码</td></tr>
           </tbody>
         </table>
       </div>
+      <div class="callout info"><span class="ic">💡</span><div>填完 Connection URL 和 Bind 信息后，点击 <b>Test connection</b> 和 <b>Test authentication</b> 验证连通性。</div></div>
+
+      <h4>2.3 LDAP 搜索设置</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>字段</th><th>值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>Edit mode</td><td><b>READ_ONLY</b></td><td>Keycloak 只读 AD，不回写</td></tr>
+            <tr><td>Users DN</td><td><code>&lt;USERS_DN&gt;</code></td><td>如 <code>OU=Users,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td></tr>
+            <tr><td>Username LDAP attribute</td><td><code>sAMAccountName</code></td><td>AD 登录名</td></tr>
+            <tr><td>RDN LDAP attribute</td><td><code>cn</code></td><td></td></tr>
+            <tr><td>UUID LDAP attribute</td><td><code>objectGUID</code></td><td>AD 唯一标识</td></tr>
+            <tr><td>User object classes</td><td><code>person, organizationalPerson, user</code></td><td></td></tr>
+            <tr><td>Search scope</td><td><b>Subtree</b></td><td>搜索 Users DN 下所有子 OU</td></tr>
+            <tr><td>Read timeout</td><td>留空（使用默认）</td><td></td></tr>
+            <tr><td>Pagination</td><td><b>开</b></td><td>大量用户时需要分页查询</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>2.4 用户过滤（控制谁能访问 Quick）</h4>
+      <p>通过 AD 用户组过滤，<b>只同步特定组的成员到 Keycloak</b>，不在组里的 AD 用户无法登录 Quick。</p>
+      <p><b>Infra 团队操作：</b> 在 AD 中创建用户组（如 <code>&lt;QUICK_USERS_GROUP&gt;</code>），将允许使用 Quick 的人加入该组。</p>
+      <p><b>应用层团队操作：</b> 在 Keycloak LDAP 配置中添加用户过滤条件：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td><b>User LDAP Filter</b></td><td><code>(memberOf=CN=&lt;QUICK_USERS_GROUP&gt;,OU=Groups,DC=&lt;domain&gt;,DC=&lt;tld&gt;)</code></td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div><code>DC=&lt;domain&gt;,DC=&lt;tld&gt;</code> 需替换为实际的域名后缀。组名 <code>&lt;QUICK_USERS_GROUP&gt;</code> 和 OU 路径按实际 AD 结构调整。</div></div>
+      <p><b>效果：</b></p>
+      <ul class="plain">
+        <li>Keycloak 只同步 <code>&lt;QUICK_USERS_GROUP&gt;</code> 组的成员，其他 AD 用户完全不出现在 Keycloak 中</li>
+        <li>不在组里的人无法通过 SSO 登录 Quick</li>
+        <li>后续增减人员由 Infra 团队在 AD 侧操作即可，应用层无需变更</li>
+      </ul>
+
+      <h4>2.5 同步设置</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>字段</th><th>值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>Import users</td><td><b>开</b></td><td>将 AD 用户导入 Keycloak 本地缓存</td></tr>
+            <tr><td>Sync registrations</td><td><b>关</b></td><td>不将 Keycloak 新建用户写回 AD</td></tr>
+            <tr><td>Periodic full sync</td><td><b>开</b></td><td>定时全量同步</td></tr>
+            <tr><td>Full sync period</td><td><code>86400</code>（秒 = 24 小时）</td><td>每天全量同步一次</td></tr>
+            <tr><td>Periodic changed users sync</td><td><b>开</b></td><td>定时增量同步变更</td></tr>
+            <tr><td>Changed users sync period</td><td><code>300</code>（秒 = 5 分钟）</td><td>每 5 分钟同步变更用户</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>2.6 Kerberos 集成（可选）</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Allow Kerberos authentication</td><td>关（除非需要 Windows 集成认证）</td></tr>
+        <tr><td>Use Kerberos for password authentication</td><td>关</td></tr>
+      </tbody></table></div>
+
+      <h4>2.7 Cache 设置</h4>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Cache policy</td><td>DEFAULT</td></tr>
+        <tr><td>Max lifespan</td><td>留空</td></tr>
+      </tbody></table></div>
+      <p>保存配置。</p>
 
       <h3 id="doc2-s3"><span class="step-badge">3</span>配置 Attribute Mapper（属性映射）</h3>
+      <p>保存 LDAP Provider 后，进入 <b>Mappers</b> 标签页。选择 Vendor 为 Active Directory 后，Keycloak 会自动创建默认 Mapper。确认以下关键映射存在：</p>
+      <h4>默认 Mapper（通常自动创建）</h4>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Mapper</th><th>LDAP 属性</th><th>Keycloak 属性</th></tr></thead>
+          <thead><tr><th>Mapper 名称</th><th>类型</th><th>LDAP 属性</th><th>Keycloak 属性</th><th>说明</th></tr></thead>
           <tbody>
-            <tr><td>username</td><td><code>sAMAccountName</code></td><td>username</td></tr>
-            <tr><td>email</td><td><code>mail</code></td><td><b>email（关键！）</b></td></tr>
-            <tr><td>first / last name</td><td><code>givenName / sn</code></td><td>firstName / lastName</td></tr>
+            <tr><td>username</td><td>user-attribute-ldap-mapper</td><td><code>sAMAccountName</code></td><td><code>username</code></td><td>登录名</td></tr>
+            <tr><td>email</td><td>user-attribute-ldap-mapper</td><td><code>mail</code></td><td><code>email</code></td><td><b>关键！Quick 用 email 打通</b></td></tr>
+            <tr><td>first name</td><td>user-attribute-ldap-mapper</td><td><code>givenName</code></td><td><code>firstName</code></td><td>名</td></tr>
+            <tr><td>last name</td><td>user-attribute-ldap-mapper</td><td><code>sn</code></td><td><code>lastName</code></td><td>姓</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="callout warn"><span class="ic">⚠️</span><div>必须确认 email Mapper 存在且正确。如果 AD 中用户的 mail 字段为空，该用户将无法登录 Quick。</div></div>
+      <div class="callout warn"><span class="ic">⚠️</span><div><b>必须确认 email Mapper 存在且正确</b>。Quick Web + Desktop 打通完全依赖 email 属性。如果 AD 中用户的 <code>mail</code> 字段为空，该用户将无法登录 Quick。</div></div>
+
+      <h4>如需手动添加 email Mapper</h4>
+      <p>点击 <b>Add mapper</b> → 选择 <b>user-attribute-ldap-mapper</b>：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Name</td><td><code>email</code></td></tr>
+        <tr><td>User Model Attribute</td><td><code>email</code></td></tr>
+        <tr><td>LDAP Attribute</td><td><code>mail</code></td></tr>
+        <tr><td>Read Only</td><td><b>开</b></td></tr>
+        <tr><td>Always Read Value From LDAP</td><td><b>开</b></td></tr>
+        <tr><td>Is Mandatory In LDAP</td><td>关</td></tr>
+      </tbody></table></div>
 
       <h3 id="doc2-s4"><span class="step-badge">4</span>配置组同步（可选但推荐）</h3>
+      <p>如果需要将 AD 组同步到 Keycloak（用于 Quick 角色映射），添加组 Mapper：</p>
+      <h4>4.1 添加 Group Mapper</h4>
+      <p>在 LDAP Provider 的 <b>Mappers</b> 标签页 → <b>Add mapper</b> → 选择 <b>group-ldap-mapper</b>：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Name</td><td><code>AD Groups</code></td></tr>
+        <tr><td>LDAP Groups DN</td><td><code>&lt;GROUPS_DN&gt;</code></td></tr>
+        <tr><td>Group Name LDAP Attribute</td><td><code>cn</code></td></tr>
+        <tr><td>Group Object Classes</td><td><code>group</code></td></tr>
+        <tr><td>Membership LDAP Attribute</td><td><code>member</code></td></tr>
+        <tr><td>Membership Attribute Type</td><td><b>DN</b></td></tr>
+        <tr><td>Mode</td><td><b>READ_ONLY</b></td></tr>
+        <tr><td>User Groups Retrieve Strategy</td><td><b>LOAD_GROUPS_BY_MEMBER_ATTRIBUTE</b></td></tr>
+        <tr><td>Drop non-existing groups during sync</td><td><b>关</b>（首次建议关闭，稳定后可开启）</td></tr>
+      </tbody></table></div>
+
+      <h4>4.2 组与 Quick 角色的映射关系</h4>
       <div class="table-wrap">
         <table>
           <thead><tr><th>AD 组</th><th>Keycloak 组</th><th>Quick 角色</th></tr></thead>
@@ -531,57 +768,237 @@
       </div>
 
       <h3 id="doc2-s5"><span class="step-badge">5</span>触发首次同步</h3>
-      <p>点击 <b>Synchronize all users</b>，观察结果：<code>X users imported</code> 表示成功。验证 Users 列表中 email 字段已填充。</p>
-      <div class="callout warn"><span class="ic">⚠️</span><div>AD 同步过来的用户默认 Email verified = OFF，需添加 <code>hardcoded-attribute-mapper</code>（<code>emailVerified = true</code>）解决。</div></div>
+      <h4>5.1 手动触发全量同步</h4>
+      <p>在 LDAP Provider 配置页面顶部，点击 <b>Synchronize all users</b></p>
+      <p>观察同步结果：</p>
+      <ul class="plain">
+        <li>✅ <code>X users imported</code> — 同步成功</li>
+        <li>❌ 如报错，检查 Connection URL / Bind DN / Users DN</li>
+      </ul>
+
+      <h4>5.2 验证同步结果</h4>
+      <p class="path">Keycloak → 左侧菜单 → <b>Users</b> → 搜索任意 AD 用户名</p>
+      <p>确认：</p>
+      <ul class="plain">
+        <li>用户出现在列表中 ✅</li>
+        <li><b>email 字段已填充</b> ✅</li>
+        <li><b>Email verified = ON</b> ⚠️（见下一步）</li>
+      </ul>
+
+      <h4>5.3 解决 Email Verified 问题</h4>
+      <p>AD 同步过来的用户默认 <code>Email verified = OFF</code>，会导致 SAML/OIDC Token 中不包含 email claim。</p>
+      <p><b>解决方案：添加 Hardcoded Attribute Mapper</b></p>
+      <p>在 LDAP Provider 的 Mappers 中 → <b>Add mapper</b> → 选择 <b>hardcoded-attribute-mapper</b>：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Name</td><td><code>email verified</code></td></tr>
+        <tr><td>User Model Attribute Name</td><td><code>emailVerified</code></td></tr>
+        <tr><td>User Model Attribute Value</td><td><code>true</code></td></tr>
+      </tbody></table></div>
+      <p>保存后重新同步用户，所有 AD 用户的 Email verified 将自动设为 ON。</p>
 
       <h3 id="doc2-s6"><span class="step-badge">6</span>验证登录</h3>
-      <p>使用 AD 用户的 sAMAccountName + AD 密码登录 Keycloak Account Console 验证 AD 集成；再用同一账号测试 Quick Web SSO 与 Desktop OIDC 登录，验证 email 打通。</p>
+      <h4>6.1 测试 AD 密码认证</h4>
+      <ol>
+        <li>打开 Keycloak 的 Account Console：<code>https://&lt;KEYCLOAK_DOMAIN&gt;/realms/&lt;REALM_NAME&gt;/account</code></li>
+        <li>使用 AD 用户的 <b>sAMAccountName + AD 密码</b> 登录</li>
+        <li>登录成功 = AD 集成配置正确 ✅</li>
+      </ol>
+      <h4>6.2 测试 Quick SSO 登录</h4>
+      <p>使用同一 AD 用户通过 Quick Web SSO 和 Desktop OIDC 登录，验证 email 打通。</p>
+
+      <h3 id="doc2-ha">高可用与安全建议</h3>
+      <h4>多域控支持</h4>
+      <p>如果企业有多台域控制器，可配置 Failover：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Connection URL</td><td><code>ldaps://&lt;DC1_FQDN&gt;:636 ldaps://&lt;DC2_FQDN&gt;:636</code></td></tr>
+      </tbody></table></div>
+      <div class="callout info"><span class="ic">💡</span><div>用空格分隔多个 URL，Keycloak 会依次尝试（Failover 模式）。</div></div>
+
+      <h4>LDAPS 证书信任</h4>
+      <p>如果 AD 使用自签名证书的 LDAPS (636)：</p>
+      <ol>
+        <li>导出 AD 的 CA 证书</li>
+        <li>导入到 Keycloak 的 Java TrustStore：
+      <pre>keytool -importcert \
+  -alias ad-ca \
+  -file ad-ca-cert.pem \
+  -keystore /opt/keycloak/conf/truststore.jks \
+  -storepass changeit \
+  -noprompt</pre>
+        </li>
+        <li>在 Keycloak 启动参数中指定 TrustStore（或在 EKS 中通过环境变量配置）</li>
+      </ol>
+
+      <h4>网络安全</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>项目</th><th>建议</th></tr></thead>
+          <tbody>
+            <tr><td>端口</td><td>优先使用 LDAPS (636)，避免明文传输密码</td></tr>
+            <tr><td>网络隔离</td><td>Keycloak 所在子网需与 AD 域控在同一 VPC 或通过 VPN/VPC Peering 连通</td></tr>
+            <tr><td>服务账号权限</td><td>最小权限原则，只赋予读取 Users/Groups 的权限</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3 id="doc2-sync">同步机制详解</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>同步类型</th><th>触发方式</th><th>作用</th></tr></thead>
           <tbody>
-            <tr><td>Full Sync</td><td>每 24 小时 / 手动</td><td>全量比对，新增/更新/标记删除</td></tr>
-            <tr><td>Changed Users Sync</td><td>每 5 分钟</td><td>仅同步变更用户</td></tr>
-            <tr><td>登录时同步</td><td>每次登录</td><td>实时获取最新属性</td></tr>
+            <tr><td><b>Full Sync</b></td><td>每 24 小时自动 / 手动触发</td><td>全量比对 AD 与 Keycloak 用户，添加新用户、更新变更、标记删除</td></tr>
+            <tr><td><b>Changed Users Sync</b></td><td>每 5 分钟自动</td><td>仅同步 AD 中 <code>whenChanged</code> 时间戳晚于上次同步的用户</td></tr>
+            <tr><td><b>登录时同步</b></td><td>用户每次登录</td><td>Keycloak 实时从 AD 获取最新属性（如 email、组变更）</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3 id="doc2-s7"><span class="step-badge">7</span>SPNEGO 免密单点登录（可选）</h3>
-      <p>适用场景：域内 Windows 电脑访问 Keycloak 登录页时自动完成认证，无需输入用户名密码。</p>
+      <h4>用户离职处理</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>AD 操作</th><th>Keycloak 反应</th><th>Quick 影响</th></tr></thead>
+          <tbody>
+            <tr><td>禁用账号</td><td>下次同步时用户被标记为 disabled</td><td>无法登录 Quick</td></tr>
+            <tr><td>删除账号</td><td>下次 Full Sync 时用户从 Keycloak 中移除</td><td>无法登录 Quick</td></tr>
+            <tr><td>修改密码</td><td>实时生效（Keycloak 委托 AD 验证密码）</td><td>下次登录使用新密码</td></tr>
+            <tr><td>移出 Quick 组</td><td>下次同步后失去 Quick 角色</td><td>无权限访问 Quick</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="doc2-faq">常见问题排查</h3>
+      <details class="faq"><summary>Test connection 失败</summary><div class="body">原因：网络不通或端口被阻。解决：确认 Keycloak 能 telnet 到 AD:389/636</div></details>
+      <details class="faq"><summary>Test authentication 失败</summary><div class="body">原因：Bind DN 或密码错误。解决：检查 DN 格式（必须完整 CN=xxx,OU=xxx,DC=xxx）和密码</div></details>
+      <details class="faq"><summary>同步 0 个用户</summary><div class="body">原因：Users DN 配置错误。解决：确认 DN 路径正确，Search scope 为 Subtree</div></details>
+      <details class="faq"><summary>用户同步了但 email 为空</summary><div class="body">原因：AD 中 mail 属性未填写。解决：让 AD 管理员补充用户的 mail 字段</div></details>
+      <details class="faq"><summary>登录报"Invalid credentials"</summary><div class="body">原因：账号被锁定 / 密码过期 / 账号禁用。解决：在 AD 中检查账号状态</div></details>
+      <details class="faq"><summary>Email verified = OFF 导致 Quick 登录失败</summary><div class="body">原因：AD 同步用户默认未验证 email。解决：添加 hardcoded-attribute-mapper 设 emailVerified=true</div></details>
+      <details class="faq"><summary>组同步不完整</summary><div class="body">原因：Groups DN 不包含所需组。解决：确认 Groups DN 覆盖目标 OU</div></details>
+      <details class="faq"><summary>LDAPS 连接失败</summary><div class="body">原因：证书不受信任。解决：导入 AD CA 证书到 Keycloak TrustStore</div></details>
+
+      <h3 id="doc2-flow">与 Quick SSO 的完整链路</h3>
+      <p>配置完成后，完整的认证流程为：</p>
+      <pre class="ascii">1. 用户访问 Quick Web / Desktop
+2. 跳转到 Keycloak 登录页
+3. 用户输入 AD 用户名 + AD 密码
+4. Keycloak 通过 LDAP Bind 向 AD 验证密码
+5. AD 返回验证结果 + 用户属性（email、姓名、组）
+6. Keycloak 生成 SAML 断言（Web）或 OIDC Token（Desktop）
+7. Quick 接收 Token，通过 email 识别用户身份
+8. 用户成功进入 Quick</pre>
+      <div class="callout ok"><span class="ic">✅</span><div><b>用户感知：</b> 和直接在企业门户登录一样的体验——输入 AD 账号密码即可，无需额外注册或记忆新密码。</div></div>
+
+      <h3 id="doc2-s7"><span class="step-badge">7</span>SPNEGO 免密单点登录（可选，域内电脑自动登录）</h3>
+      <p>适用场景：域内 Windows 电脑用户访问 Keycloak 登录页时<b>自动完成认证</b>，无需输入用户名密码。前提：用户电脑已加入域，使用域账号登录 Windows。</p>
+
+      <h4>7.1 原理</h4>
       <pre class="ascii">域内 Windows 电脑（已登录 AD 账号）
     → 浏览器访问 Keycloak 登录页
     → 浏览器自动发送 Kerberos Ticket（SPNEGO 协议）
     → Keycloak 验证 Ticket → 自动登录成功
     → 用户全程无感，不输密码</pre>
-      <div class="callout ok"><span class="ic">✅</span><div>非域设备（Mac/手机/非域 Windows）自动降级为密码登录，不影响正常使用。</div></div>
+      <div class="callout ok"><span class="ic">✅</span><div><b>非域设备（Mac/手机/非域 Windows）：</b>自动降级为密码登录（步骤 1-6 的 LDAP 方式），不影响正常使用。</div></div>
 
-      <h4>关键配置点</h4>
+      <h4>7.2 AD 侧配置（Infra 团队操作）</h4>
+      <h5>7.2.1 创建 SPNEGO 专用服务账号</h5>
+      <p>在 AD 中新建一个<b>独立的服务账号</b>（建议与 LDAP 账号分开）：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>账号名</td><td><code>svc-keycloak-http</code></td></tr>
+        <tr><td>位置</td><td><code>OU=ServiceAccounts,DC=&lt;domain&gt;,DC=&lt;tld&gt;</code></td></tr>
+        <tr><td>密码策略</td><td>永不过期</td></tr>
+        <tr><td>注意事项</td><td><b>不要</b>勾选"用户下次登录时须更改密码"</td></tr>
+      </tbody></table></div>
+
+      <h5>7.2.2 注册 SPN（Service Principal Name）</h5>
+      <p>在域控上以<b>域管理员</b>身份运行：</p>
+      <pre>setspn -S HTTP/&lt;KEYCLOAK_DOMAIN&gt; svc-keycloak-http</pre>
+      <p>验证：</p>
+      <pre>setspn -L svc-keycloak-http</pre>
+      <p>应输出：<code>HTTP/&lt;KEYCLOAK_DOMAIN&gt;</code></p>
+      <div class="callout warn"><span class="ic">⚠️</span><div>SPN 中的域名必须与用户浏览器实际访问的域名<b>完全一致</b>。如果生产环境换域名，SPN 和 keytab 需要重做。</div></div>
+
+      <h5>7.2.3 生成 keytab 文件</h5>
+      <p>在域控上运行：</p>
+      <pre>ktpass -out keycloak.keytab ^
+  -princ HTTP/&lt;KEYCLOAK_DOMAIN&gt;@&lt;DOMAIN&gt;.CN ^
+  -mapuser svc-keycloak-http@&lt;DOMAIN&gt;.CN ^
+  -pass [REDACTED_PASSWORD] ^
+  -crypto AES256-SHA1 ^
+  -ptype KRB5_NT_PRINCIPAL</pre>
+      <div class="callout danger"><span class="ic">⛔</span><div><code>@&lt;DOMAIN&gt;.CN</code> 必须<b>全大写</b>（Kerberos Realm 区分大小写）。生成 keytab 会<b>重置该账号密码</b>，确认 <code>svc-keycloak-http</code> 不被其他系统依赖。</div></div>
+      <div class="callout ok"><span class="ic">✅</span><div>产出：<code>keycloak.keytab</code> 文件，安全传递给应用层团队。</div></div>
+
+      <h4>7.3 Keycloak 侧配置（应用层团队操作）</h4>
+      <h5>7.3.1 上传 keytab 到 Keycloak 服务器</h5>
+      <p>将 <code>keycloak.keytab</code> 放到 Keycloak 可访问的路径，如：</p>
+      <pre>/opt/keycloak/conf/keycloak.keytab</pre>
+      <p>确保 Keycloak 进程有读取权限。</p>
+
+      <h5>7.3.2 在 LDAP User Federation 中启用 Kerberos</h5>
+      <p class="path">Keycloak 管理控制台 → 用户联盟 → 你的 LDAP Provider → 编辑：</p>
+      <div class="table-wrap"><table><tbody>
+        <tr><td>Allow Kerberos authentication</td><td><b>开</b></td></tr>
+        <tr><td>Use Kerberos for password authentication</td><td>关（密码仍走 LDAP Bind）</td></tr>
+        <tr><td>Kerberos Realm</td><td><code>&lt;DOMAIN&gt;.CN</code>（全大写）</td></tr>
+        <tr><td>Server Principal</td><td><code>HTTP/&lt;KEYCLOAK_DOMAIN&gt;@&lt;DOMAIN&gt;.CN</code></td></tr>
+        <tr><td>Key Tab</td><td><code>/opt/keycloak/conf/keycloak.keytab</code></td></tr>
+      </tbody></table></div>
+      <p>保存。</p>
+
+      <h5>7.3.3 配置 Authentication Flow</h5>
+      <p class="path">Keycloak → 左侧 <b>身份验证</b> → <b>browser</b> flow → 确认 <b>Kerberos</b> 步骤存在且启用：</p>
+      <pre class="ascii">browser flow:
+  ├── Cookie (ALTERNATIVE)
+  ├── Kerberos (ALTERNATIVE)        ← 确认启用
+  └── forms (ALTERNATIVE)
+        ├── Username Password Form
+        └── ...</pre>
+      <p>如果 Kerberos 步骤不存在，点击 <b>Add step</b> → 选择 <b>Kerberos</b> → 设为 <b>ALTERNATIVE</b>。</p>
+
+      <h4>7.4 客户端浏览器配置（GPO 推送）</h4>
+      <p>域内电脑需要将 Keycloak 域名加入浏览器的 <b>Intranet 信任区</b>，否则浏览器不会自动发送 Kerberos Ticket。</p>
+      <p><b>通过组策略（GPO）推送：</b></p>
+      <pre class="ascii">计算机配置 → 管理模板 → Windows 组件 → Internet Explorer → Internet 控制面板 → 安全页
+  → 站点到区域分配列表 → 添加：
+    值名称: &lt;KEYCLOAK_DOMAIN&gt;
+    值: 1 (Intranet)</pre>
+      <p>对于 Chrome/Edge，通过注册表或 GPO 设置：</p>
+      <pre>[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome]
+"AuthServerAllowlist"="*.&lt;domain&gt;.&lt;tld&gt;"
+"AuthNegotiateDelegateAllowlist"="*.&lt;domain&gt;.&lt;tld&gt;"</pre>
+
+      <h4>7.5 验证</h4>
+      <ol>
+        <li>用域账号登录 Windows 电脑</li>
+        <li>打开浏览器访问 Quick Web 登录页</li>
+        <li>应<b>自动跳过</b> Keycloak 登录页，直接进入 Quick（无需输入密码）</li>
+        <li>如果用非域设备访问，应正常显示 Keycloak 登录页（降级为密码登录）</li>
+      </ol>
+
+      <h4>7.6 基础环境要求</h4>
       <div class="table-wrap">
         <table>
+          <thead><tr><th>项目</th><th>要求</th></tr></thead>
           <tbody>
-            <tr><td>SPN 注册</td><td><code>setspn -S HTTP/&lt;KEYCLOAK_DOMAIN&gt; svc-keycloak-http</code></td></tr>
-            <tr><td>keytab 生成</td><td><code>ktpass</code> 命令生成 keytab（会重置服务账号密码）</td></tr>
-            <tr><td>Keycloak 配置</td><td>LDAP Provider 中开启 Kerberos，指定 Realm / Server Principal / Key Tab</td></tr>
-            <tr><td>浏览器配置</td><td>通过 GPO 将 Keycloak 域名加入 Intranet 信任区 / AuthServerAllowlist</td></tr>
+            <tr><td>NTP 时钟同步</td><td>Keycloak 服务器与域控时钟偏差 <b>&lt; 5 分钟</b>（Kerberos 硬性要求）</td></tr>
+            <tr><td>DNS 解析</td><td>Keycloak 服务器能正向解析域控 FQDN</td></tr>
+            <tr><td>防火墙</td><td>Keycloak → 域控 88/TCP（Kerberos）+ 389/636（LDAP）需放行</td></tr>
+            <tr><td>用户设备</td><td>必须加入域 + 用域账号登录 Windows</td></tr>
+            <tr><td>浏览器</td><td>需配置 Intranet 信任区或 AuthServerAllowlist</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="callout warn"><span class="ic">⚠️</span><div>NTP 时钟同步：Keycloak 服务器与域控时钟偏差须 &lt; 5 分钟（Kerberos 硬性要求）。SPN 中域名必须与实际访问域名完全一致。</div></div>
 
-      <h3 id="doc2-faq">常见问题排查</h3>
-      <details class="faq"><summary>Test connection 失败</summary><div class="body">网络不通或端口被阻 → 确认 Keycloak 能连通 AD:389/636</div></details>
-      <details class="faq"><summary>Test authentication 失败</summary><div class="body">Bind DN 或密码错误 → 检查 DN 格式（须完整 CN=xxx,OU=xxx,DC=xxx）</div></details>
-      <details class="faq"><summary>同步 0 个用户</summary><div class="body">Users DN 配置错误 → 确认 DN 路径正确，Search scope 为 Subtree</div></details>
-      <details class="faq"><summary>用户同步了但 email 为空</summary><div class="body">AD 中 mail 属性未填写 → 需 AD 管理员补充</div></details>
-      <details class="faq"><summary>Email verified = OFF 导致 Quick 登录失败</summary><div class="body">添加 hardcoded-attribute-mapper 设置 emailVerified=true</div></details>
-      <details class="faq"><summary>LDAPS 连接失败</summary><div class="body">证书不受信任 → 导入 AD CA 证书到 Keycloak TrustStore</div></details>
+      <h3 id="doc2-refs">参考文档</h3>
+      <ul class="refs">
+        <li><a href="https://www.keycloak.org/docs/latest/server_admin/#_ldap" target="_blank" rel="noopener">Keycloak LDAP User Federation</a></li>
+        <li><a href="https://www.keycloak.org/docs/latest/server_admin/#active_directory" target="_blank" rel="noopener">Keycloak Active Directory Integration Guide</a></li>
+        <li><a href="https://www.keycloak.org/docs/latest/server_admin/#_ldap_connection_pool" target="_blank" rel="noopener">LDAP Connection Pooling</a></li>
+      </ul>
     </section>
 
     <footer>
-      本文档为脱敏版技术参考资料，所有域名、IP、账户 ID、密码均为占位符，不含真实生产环境信息。
+      本文档为脱敏版技术参考资料，所有域名、IP、账户 ID、密码均为占位符，不含真实生产环境信息。字段与操作路径均按原始配置手册逐条还原。
     </footer>
   </main>
 </div>
